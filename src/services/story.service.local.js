@@ -17,15 +17,16 @@ window.cs = storyService
 
 
 async function query(filterBy = { txt: '', price: 0 }) {
-    var storys = await storageService.query(STORAGE_KEY)
+    //todo: fix this for stories
+    var stories = await storageService.query(STORAGE_KEY)
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
-        storys = storys.filter(story => regex.test(story.vendor) || regex.test(story.description))
+        stories = stories.filter(story => regex.test(story.vendor) || regex.test(story.description))
     }
     if (filterBy.price) {
-        storys = storys.filter(story => story.price <= filterBy.price)
+        stories = stories.filter(story => story.price <= filterBy.price)
     }
-    return storys
+    return stories
 }
 
 function getById(storyId) {
@@ -66,6 +67,7 @@ async function addStoryMsg(storyId, txt) {
 }
 
 function getEmptyStory() {
+    //todo fix this
     return {
         vendor: 'Susita-' + (Date.now() % 1000),
         price: utilService.getRandomIntInclusive(1000, 9000),

@@ -18,7 +18,8 @@ export const storyService = {
 window.cs = storyService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
+async function query(filterBy = {  }) {
+    //todo: fix this 
     return httpService.get(STORAGE_KEY, filterBy)
 }
 
