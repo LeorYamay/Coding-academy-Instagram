@@ -11,7 +11,7 @@ import { NavBar } from './cmps/NavBar'
 export function RootCmp() {
 
     return (
-        <div>
+        <div className='main-container '>
             {/* <AppHeader /> */}
             <NavBar/>
             <main>

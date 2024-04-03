@@ -1,24 +1,21 @@
 .nav-bar {
-    // Your existing styles
     display: flex;
-    flex-direction:column ;
+    flex-direction: column;
 
     grid-column: 1;
+}
 
-    .nav-text{
-        display: none;
-      }
-  
-    @media (min-width: 1263px) {
-      .nav-text{
+.nav-text {
+    display: none;
+
+    @include for-wide-layout {
         display: inline;
-      }
     }
-  }
+}
 
-  .nav-more {
+.nav-more {
     position: fixed;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-  }
+}
