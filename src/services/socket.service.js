@@ -6,8 +6,8 @@ export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 
-export const SOCKET_EVENT_CAR_SAVED = 'car-saved'
-export const SOCKET_EVENT_CAR_REMOVED = 'car-removed'
+export const SOCKET_EVENT_STORY_SAVED = 'story-saved'
+export const SOCKET_EVENT_STORY_REMOVED = 'story-removed'
 
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'

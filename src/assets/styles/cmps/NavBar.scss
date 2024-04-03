@@ -1,0 +1,15 @@
+.nav-bar {
+    // Your existing styles
+    display: flex;
+    flex-direction:column ;
+
+    .nav-text{
+        display: none;
+      }
+  
+    @media (min-width: 1263px) {
+      .nav-text{
+        display: inline;
+      }
+    }
+  }

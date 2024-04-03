@@ -5,7 +5,8 @@ import { loadStories, addStory, updateStory, removeStory, addToStoryt, getAction
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { userService } from '../services/user.service.js'
 import { storyService } from '../services/story.service.js'
-import { SOCKET_EVENT_STORY_REMOVED, socketService, SOCKET_EVENT_STORY_ADDED, SOCKET_EVENT_STORY_UPDATED } from '../services/socket.service.js'
+// import { SOCKET_EVENT_STORY_REMOVED, socketService, SOCKET_EVENT_STORY_ADDED, SOCKET_EVENT_STORY_UPDATED } from '../services/socket.service.js'
+import { SOCKET_EVENT_STORY_REMOVED, socketService } from '../services/socket.service.js'
 
 export function StoryIndex() {
 
@@ -28,9 +29,9 @@ export function StoryIndex() {
         })
 
         return () => {
-            socketService.off(SOCKET_EVENT_STORY_ADDED)
-            socketService.off(SOCKET_EVENT_STORY_UPDATED)
-            socketService.off(SOCKET_EVENT_STORY_REMOVED)
+            // socketService.off(SOCKET_EVENT_STORY_ADDED)
+            // socketService.off(SOCKET_EVENT_STORY_UPDATED)
+            // socketService.off(SOCKET_EVENT_STORY_REMOVED)
         }
     }, [])
 

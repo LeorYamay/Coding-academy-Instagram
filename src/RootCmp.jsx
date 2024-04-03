@@ -6,19 +6,21 @@ import routes from './routes'
 import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { UserDetails } from './pages/UserDetails'
+import { NavBar } from './cmps/NavBar'
 
 export function RootCmp() {
 
     return (
         <div>
-            <AppHeader />
+            {/* <AppHeader /> */}
+            <NavBar/>
             <main>
-                <Routes>
+                {/* <Routes>
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                     <Route path="user/:id" element={<UserDetails />} />
-                </Routes>
+                </Routes> */}
             </main>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </div>
     )
 }

@@ -3,7 +3,8 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
-import { removeFromCart, checkout } from '../store/story.actions'
+// import { removeFromCart, checkout } from '../store/story.actions'
+import {  checkout } from '../store/story.actions'
 import { UserMsg } from './UserMsg.jsx'
 
 export function AppFooter() {
@@ -57,3 +58,4 @@ export function AppFooter() {
         </footer>
     )
 }
+

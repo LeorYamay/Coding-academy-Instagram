@@ -9,7 +9,6 @@ import { utilService } from '../services/util.service'
 export function HomePage() {
     const dispatch = useDispatch()
     const count = useSelector(storeState => storeState.userModule.count)
-
     function changeCount(diff) {
         console.log('Changing count by:', diff);
         dispatch({ type: CHANGE_COUNT, diff })
