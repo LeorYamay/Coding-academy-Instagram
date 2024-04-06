@@ -63,7 +63,7 @@ const user = {
   "password": "mukmuk",
   "fullname": "Muki Muka",
   "imgUrl": "http://some-img",
-  "status":"public",
+  "status":"public",//private
   "following": [
     {
       "_id": "u106",
@@ -81,4 +81,10 @@ const user = {
   "myStoryIds": ["s104", "s111", "s123"],
   "savedStoryIds": ["s104", "s111", "s123"],
   "followedTags":["fun", "kids"]
+}
+
+const tag ={
+  "_id":t123,
+  "tagname":"tagLife",
+  "numberOfStories":100
 }
