@@ -1,0 +1,12 @@
+.circle-container {
+    width: 50px; /* adjust size as needed */
+    height: 50px; /* adjust size as needed */
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .circle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* maintain aspect ratio */
+  }

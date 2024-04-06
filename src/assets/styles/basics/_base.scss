@@ -11,6 +11,10 @@ html {
     font-family: montserrat;
     line-height: 1.6;
     color: $clr2;
+    height: 100%;
+}
+#root{
+    height:  100%;
 }
 
 body {
@@ -18,6 +22,7 @@ body {
     margin: 0;
     // max-width: 1024px;
     margin: auto;
+    height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,9 +32,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-section, main, footer {
-    padding: 5px;
-}
+// section, main, footer {
+//     padding: 5px;
+// }
 
 img {
     width: 100%;

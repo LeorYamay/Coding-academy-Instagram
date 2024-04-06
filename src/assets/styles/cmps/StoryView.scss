@@ -1,0 +1,69 @@
+.story {
+    display: flex;
+    align-items: flex-start;
+  
+    .image-section {
+      flex: 0 0 auto;
+      margin-right: 20px; // Adjust as needed
+    }
+  
+    .content-container {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .post-info {
+      border-bottom: 1px solid #ccc; // Separating line between post info and comments
+      padding-bottom: 10px; // Adjust as needed
+      margin-bottom: 20px; // Adjust as needed
+  
+      .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px; // Adjust as needed
+  
+        .user-img {
+          width: 40px; // Adjust as needed
+          height: 40px; // Adjust as needed
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 10px; // Adjust as needed
+        }
+  
+        .username {
+          font-weight: bold;
+        }
+      }
+  
+      .post-location {
+        color: #666; // Adjust as needed
+      }
+    }
+  
+    .comments-section {
+      display: flex;
+      flex-direction: column; // Comments stack one under the other
+      margin-left: 20px; // Adjust as needed
+  
+      .comment {
+        margin-bottom: 15px; // Adjust as needed
+        position: relative; // For like button positioning
+  
+        .like-button {
+          position: absolute;
+          top: 10px; // Adjust as needed
+          right: 10px; // Adjust as needed
+          background: none;
+          border: none;
+          cursor: pointer;
+  
+          i {
+            color: #aaa; // Adjust as needed
+            font-size: 20px; // Adjust as needed
+          }
+        }
+      }
+    }
+  }
+  

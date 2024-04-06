@@ -1,7 +1,7 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker'
 
 export const demoUserService = {
-    createRandomUser,
+    generateRandomUser,
     randomFollowRelations
 }
 
@@ -38,7 +38,7 @@ function generateRandomTags(numTags = 5) {
     return tags
 }
 
-function createRandomUser() {
+function generateRandomUser() {
     try {
         const { username, fullname } = generateRandomName()
         const password = generateRandomPassword()
@@ -78,28 +78,34 @@ function randomlyAssignFollowers(user, userList) {
     return followers
 }
 
-async function randomlyAssignFollowing(user, userList) {
-    const numFollowing = Math.floor(Math.random() * userList.length)
-    const following = []
-    for (let i = 0; i < numFollowing; i++) {
-        const followingIndex = Math.floor(Math.random() * userList.length)
-        if (userList[followingIndex]._id !== user._id) {
-            following.push({
-                _id: userList[followingIndex]._id,
-                fullname: userList[followingIndex].fullname,
-                imgUrl: userList[followingIndex].imgUrl
-            })
+
+async function randomFollowRelations(userList) {
+    try {
+        for (const user of userList) {
+            const followers = randomlyAssignFollowers(user, userList);
+
+            user.followers = followers;
+
+            for (const follower of followers) {
+                const followerToUpdate = userList.find(u => u._id === follower._id);
+                if (followerToUpdate) {
+                    if (!followerToUpdate.following) {
+                        followerToUpdate.following = [];
+                    }
+                    followerToUpdate.following.push({
+                        _id: user._id,
+                        fullname: user.fullname,
+                        imgUrl: user.imgUrl
+                    });
+                }
+            }
         }
-    }
-    return following
-}
 
-async function randomFollowRelations(user, userList) {
-    const followers = randomlyAssignFollowers(user, userList)
-    const following = await randomlyAssignFollowing(user, userList)
-
-    return {
-        followers,
-        following
+        return userList;
+    } catch (error) {
+        console.error('Error assigning random follow relations:', error);
+        throw error;
     }
 }
+
+

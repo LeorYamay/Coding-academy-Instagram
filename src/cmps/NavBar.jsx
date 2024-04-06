@@ -14,7 +14,7 @@ export function NavBar() {
     const [searchParams, setSearchParams] = useSearchParams()
 
     // const userName = 'muki_puki'
-    const user = demoUserService.createRandomUser()
+    const user = demoUserService.generateRandomUser()
     return (
         <nav className="nav-bar">
 
@@ -108,10 +108,6 @@ export function NavBar() {
                 <span className="nav-text">Profile</span>
                 
             </NavLink>
-            {/* <NavLink key='profile' to={userName} >
-                <span className="nav-text"> Profile </span>
-            </NavLink> */}
-            {/* might not be part of the nav bar */}
             <div className="nav-more" key={'more'}>
                 <svg aria-label="Settings" className="nav-more-icon"fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
                     <title>Settings</title>
