@@ -78,7 +78,7 @@ function randomlyAssignFollowers(user, userList) {
     return followers
 }
 
-
+// not used
 async function randomFollowRelations(userList) {
     try {
         for (const user of userList) {

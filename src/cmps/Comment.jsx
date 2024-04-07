@@ -6,7 +6,7 @@ export function CommentCmp({ comment }) {
         <div className="comment">
             <div className="user-info">
                 <div className="circle-container">
-                    <img src={by.imgUrl} alt="User" className="user-img circle-image" />
+                    <img src={comment.by.imgUrl} alt="User" className="user-img circle-image" />
                 </div>
                 <span className="username">{by.fullname}</span>
             </div>

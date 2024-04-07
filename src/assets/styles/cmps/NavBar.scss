@@ -1,11 +1,11 @@
 .nav-bar {
+    position:fixed;
     display: flex;
     flex-direction: column;
     
     grid-column: 1;
-    padding-bottom: 20px;
-    padding-top: 8px;
     align-items: center;
+    padding: 1rem;
     
 }
 

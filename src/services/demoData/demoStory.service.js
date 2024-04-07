@@ -1,9 +1,12 @@
 import { faker } from '@faker-js/faker'
+import {demoUserService } from './demoUser.service'
 
 export const demoStoryService = {
-    generateRandomStory
+    generateRandomStory,
+    generateRandomStories
 }
-function generateRandomStory(user =null) {
+function generateRandomStory(byUser =null) {
+  const user = !byUser && demoUserService.generateRandomUser()
   const randomTagsCount = Math.floor(Math.random() * 5) + 1; // Random number of tags (1 to 5)
   const tags = Array.from({ length: randomTagsCount }, () => faker.lorem.word());
 
@@ -16,8 +19,8 @@ function generateRandomStory(user =null) {
     "status": "public",
     "createdAt": new Date(),
     "by": {
-      "fullname": user ? user.fullname : "", // You can remove this if not needed
-      "imgUrl": user ? user.imgUrl : "" // You can remove this if not needed
+      "fullname": user ? user.fullname : "",
+      "imgUrl": user ? user.imgUrl : ""
     },
     "loc": {
       "lat": randomLat,
@@ -32,3 +35,10 @@ function generateRandomStory(user =null) {
   return story
 }
 
+function generateRandomStories(n){
+  const stories = []
+  for (let i = 0; i < n; i++) {
+    stories.push(generateRandomStory())
+  }
+  return stories
+}

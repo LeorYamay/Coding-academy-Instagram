@@ -6,17 +6,18 @@ import { demoStoryService } from '../services/demoData/demoStory.service'
 import { demoUserService } from '../services/demoData/demoUser.service'
 
 
-export function StoryView() {
+export function StoryView({story}) {
 
     const params = useParams()
-    const [showModal, setShowModal] = useState(false)
+
+    const [showModal, setShowModal] = useState(false) // maybe remove for now?
     const storyId = params.storyId
 
     const handleCloseModal = () => setShowModal(false)
     const handleShowModal = () => setShowModal(true)
 
-    const user = demoUserService.generateRandomUser()
-    const story = demoStoryService.generateRandomStory(user)
+    // const user = demoUserService.generateRandomUser()
+    // const story = demoStoryService.generateRandomStory(user)
 
     const { imgUrl, by, loc, txt, comments } = story
 
@@ -29,11 +30,11 @@ export function StoryView() {
                 <div className="post-info">
                     <div className="user-info">
                         <div className="circle-container">
-                            <img src={by.imgUrl} alt="User" className="user-img circle-image" />
+                            <img src={ story.by.imgUrl} alt="User" className="user-img circle-image" />
                         </div>
-                        <span className="username">{by.fullname}</span>
+                        <span className="username">{story.by.fullname}</span>
                     </div>
-                    <p className="post-location">{loc.name}</p>
+                    <p className="post-location">{story.loc.name}</p>
                 </div>
                 <div className="comments-section">
                     <div className="comment">

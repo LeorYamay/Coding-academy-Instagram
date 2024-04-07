@@ -12,6 +12,7 @@ import { UserDetails } from './pages/UserDetails'
 import { Explore } from './pages/Explore'
 import { Reels } from './pages/Reels'
 import { ChatApp } from './pages/Chat'
+import { HomePage } from './pages/HomePage'
 
 export function RootCmp() {
 
@@ -21,7 +22,7 @@ export function RootCmp() {
             <NavBar />
             <main>
                 <Routes>
-                    <Route path="/" element={""} />{/* replace with home */}
+                    <Route path="/" element={<HomePage/>} />
 
                     <Route path="/:id" element={<UserDetails />} />
 
