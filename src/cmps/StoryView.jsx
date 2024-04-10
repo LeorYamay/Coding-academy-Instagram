@@ -5,6 +5,7 @@ import { CommentCmp } from './Comment'
 import { demoStoryService } from '../services/demoData/demoStory.service'
 import { demoUserService } from '../services/demoData/demoUser.service'
 import { CommentSvg, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
+import { utilService } from '../services/util.service'
 
 
 export function StoryView({ story }) {
@@ -17,7 +18,9 @@ export function StoryView({ story }) {
     const handleCloseModal = () => setShowModal(false)
     const handleShowModal = () => setShowModal(true)
 
-    const { imgUrl, by, loc, txt, comments } = story
+    const createdDateFormated=utilService.formatDate(story.createdAt)
+
+
     let likeText = ""
     const hasLikes = story.likedBy.length > 0
     if (story.likedBy.length > 0) {
@@ -32,6 +35,7 @@ export function StoryView({ story }) {
                 </div>
                 <div className='story-info-text'>
                     <span className="username">{story.by.fullname}</span>
+                    <span className=''>{"•"+createdDateFormated+"•follow"}</span>
                     {(story.loc.name) &&
                         <div className="story-location">
                             {story.loc.name}
@@ -43,7 +47,7 @@ export function StoryView({ story }) {
                 </div>
             </div>
             <div className="image-section">
-                <img src={imgUrl} alt="Post" className="story-image" />
+                <img src={story.imgUrl} alt="Post" className="story-image" />
             </div>
             <div className='actions-section'>
                 <div className='action-button'>
@@ -65,9 +69,9 @@ export function StoryView({ story }) {
                 </div>}
             <div className="comments-section">
                 <div className="comment">
-                    <CommentCmp comment={{ by, txt }} /> {/* Render the main post text using the Comment component */}
+                    <CommentCmp comment={{by:story.by, txt:story.txt}} /> {/* Render the main post text using the Comment component */}
                 </div>
-                {comments.map((comment, index) => (
+                {story.comments.map((comment, index) => (
                     <CommentCmp key={index} comment={comment} />
                 ))}
             </div>

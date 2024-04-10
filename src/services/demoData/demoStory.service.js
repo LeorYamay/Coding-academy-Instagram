@@ -21,7 +21,7 @@ function generateRandomStory(byUser =null) {
     txt: faker.lorem.sentence(),
     imgUrl: faker.image.url(),
     status: "public",
-    createdAt: new Date(),
+    createdAt: utilService.randomPastTime(),
     by: {
       fullname: user ? user.fullname : "",
       imgUrl: user ? user.imgUrl : ""

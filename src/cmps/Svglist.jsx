@@ -37,7 +37,7 @@ export function ShareSvg({ label, type }) {
     return (
         <svg
             aria-label={label}
-            class={type}
+            className={type}
             fill="currentColor"
             height="24"
             role="img"
@@ -71,7 +71,7 @@ export function SaveSvg({ label, type }) {
     return (
         <svg
             aria-label={label}
-            class={type}
+            className={type}
             fill="currentColor"
             height="24"
             role="img"
@@ -96,7 +96,7 @@ export function XSVG({ label, type }) {
     return (
         <svg
             aria-label={label}
-            class={type}
+            className={type}
             fill="currentColor"
             height="18"
             role="img"
@@ -132,7 +132,7 @@ export function ThreeDotsSVG({ label, type }) {
     return (
         <svg
             aria-label={label}
-            class={type}
+            className={type}
             fill="currentColor"
             height="24"
             role="img"
