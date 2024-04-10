@@ -4,9 +4,10 @@ import { useState } from 'react'
 import { CommentCmp } from './Comment'
 import { demoStoryService } from '../services/demoData/demoStory.service'
 import { demoUserService } from '../services/demoData/demoUser.service'
+import { CommentSvg, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
 
 
-export function StoryView({story}) {
+export function StoryView({ story }) {
 
     const params = useParams()
 
@@ -16,39 +17,60 @@ export function StoryView({story}) {
     const handleCloseModal = () => setShowModal(false)
     const handleShowModal = () => setShowModal(true)
 
-    // const user = demoUserService.generateRandomUser()
-    // const story = demoStoryService.generateRandomStory(user)
-
     const { imgUrl, by, loc, txt, comments } = story
-
+    let likeText = ""
+    const hasLikes = story.likedBy.length > 0
+    if (story.likedBy.length > 0) {
+        const firstLikedBy = story.likedBy[0]
+        likeText = "Liked by " + story.likedBy[0] + (story.likedBy.length > 1) ? "and more" : ""
+    }
     return (
         <div className="story">
-            <div className="image-section">
-                <img src={imgUrl} alt="Post" className="post-image" />
-            </div>
-            <div className='content-container'>
-                <div className="post-info">
-                    <div className="user-info">
-                        <div className="circle-container">
-                            <img src={ story.by.imgUrl} alt="User" className="user-img circle-image" />
+            <div className="story-info">
+                <div className="circle-container">
+                    <img src={story.by.imgUrl} alt="User" className="user-img circle-image" />
+                </div>
+                <div className='story-info-text'>
+                    <span className="username">{story.by.fullname}</span>
+                    {(story.loc.name) &&
+                        <div className="story-location">
+                            {story.loc.name}
                         </div>
-                        <span className="username">{story.by.fullname}</span>
-                    </div>
-                    <p className="post-location">{story.loc.name}</p>
+                    }
                 </div>
-                <div className="comments-section">
-                    <div className="comment">
-                        <CommentCmp comment={{ by, txt }} /> {/* Render the main post text using the Comment component */}
-                        <button className="like-button" onClick={() => {/* Handle like functionality here */ }}>
-                            <i className="far fa-heart"></i>
-                        </button>
-                    </div>
-                    {comments.map((comment, index) => (
-                        <CommentCmp key={index} comment={comment} />
-                    ))}
+                <div className='story-info-button'>
+                <ThreeDotsSVG label='more options' type ='more-button'/>
                 </div>
+            </div>
+            <div className="image-section">
+                <img src={imgUrl} alt="Post" className="story-image" />
+            </div>
+            <div className='actions-section'>
+                <div className='action-button'>
+                    <HeartSvg label='like' type='like-button' />
+                </div>
+                <div className='action-button'>
+                    <CommentSvg label='comment' type='comment-button' />
+                </div>
+                <div className='action-button'>
+                    <ShareSvg label='share' type='share-button' />
+                </div>
+                <div className='action-button'>
+                    <SaveSvg label='save' type='save-button' />
+                </div>
+            </div>
+            {hasLikes &&
+                <div className='likes-section'>
+                    {likeText}
+                </div>}
+            <div className="comments-section">
+                <div className="comment">
+                    <CommentCmp comment={{ by, txt }} /> {/* Render the main post text using the Comment component */}
+                </div>
+                {comments.map((comment, index) => (
+                    <CommentCmp key={index} comment={comment} />
+                ))}
             </div>
         </div>
     )
-
 }

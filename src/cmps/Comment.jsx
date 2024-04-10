@@ -1,3 +1,4 @@
+import { HeartSvg } from "./Svglist"
 
 
 export function CommentCmp({ comment }) {
@@ -17,9 +18,7 @@ export function CommentCmp({ comment }) {
                     <span>{likedBy.length}</span>
                 </div>
             )}
-            <button className="like-button" onClick={() => {/* Handle like functionality here */ }}>
-                <i className="far fa-heart"></i>
-            </button>
+                <HeartSvg label='like' type='like-button-icon' />
         </div>
     )
 }

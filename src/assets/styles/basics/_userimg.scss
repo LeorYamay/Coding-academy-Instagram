@@ -1,8 +1,13 @@
 .circle-container {
-    width: 50px; /* adjust size as needed */
-    height: 50px; /* adjust size as needed */
+    width: 24px; /* adjust size as needed */
+    height: 24px; /* adjust size as needed */
     border-radius: 50%;
     overflow: hidden;
+
+    .story &{
+      width: 32px; /* adjust size as needed */
+      height: 32px; /* adjust size as needed */
+    }
   }
   
   .circle-image {

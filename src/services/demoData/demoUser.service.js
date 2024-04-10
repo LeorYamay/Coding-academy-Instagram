@@ -1,10 +1,19 @@
 import { faker } from '@faker-js/faker'
+import {utilService} from '../util.service'
 
 export const demoUserService = {
     generateRandomUser,
-    randomFollowRelations
+    generateRandomUsers,
+    randomFollowRelations,
+    getMiniUser
 }
-
+function generateRandomUsers(num =10){
+    const users=[]
+    for (let i=0;i<num;i++){
+        users.push(generateRandomUser())
+    }
+    return users
+}
 function generateRandomName() {
     const username = faker.internet.userName().toLowerCase().replace(/\s/g, '')
     const fullname = faker.person.fullName()
@@ -45,14 +54,20 @@ function generateRandomUser() {
         const imgUrl = generateRandomImage()
         const status = getRandomStatus()
         const followedTags = generateRandomTags()
+        const _id = utilService.makeId()
 
         const user = {
+            _id,
             username,
             password,
             fullname,
             imgUrl,
             status,
-            followedTags
+            followedTags,
+            followers:[],
+            following:[],
+            myStoryIds:[],
+            savedStoryIds:[]
         }
 
         return user
@@ -108,4 +123,11 @@ async function randomFollowRelations(userList) {
     }
 }
 
+function getMiniUser(user){
+    return{
+        _id:user._id,
+        fullname:user.fullname,
+        imgUrl:user.imgUrl
+    }
+}
 
