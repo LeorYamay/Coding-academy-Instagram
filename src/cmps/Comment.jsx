@@ -8,8 +8,8 @@ export function CommentCmp({ comment }) {
             <div className="circle-container">
                 <img src={comment.by.imgUrl} alt="User" className="user-img circle-image" />
             </div>
-            <span className="username">{by.fullname}</span>
-            <p className="comment-text">{txt}</p>
+            <span className="username">{by.fullname} </span> 
+            <span className="comment-text"> {txt} </span>
             {likedBy && likedBy.length > 0 && (
                 <div className="likes">
                     <span>{likedBy.length}</span>

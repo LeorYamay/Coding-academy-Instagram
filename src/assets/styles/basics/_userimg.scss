@@ -1,12 +1,12 @@
 .circle-container {
-    width: 24px; /* adjust size as needed */
-    height: 24px; /* adjust size as needed */
+    width: 24px; 
+    height: 24px; 
     border-radius: 50%;
     overflow: hidden;
 
-    .story &{
-      width: 32px; /* adjust size as needed */
-      height: 32px; /* adjust size as needed */
+    .story-view &{
+      width: 32px; 
+      height: 32px; 
     }
   }
   

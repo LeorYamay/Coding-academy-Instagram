@@ -1,5 +1,8 @@
+import { faker } from '@faker-js/faker'
+
 import { demoUserService } from './demoUser.service'
 import { demoStoryService } from './demoStory.service'
+import { utilService } from '../util.service'
 
 export const demoDataService = {
     createDemoData
@@ -10,6 +13,7 @@ function createDemoData() {
     const stories = demoStoryService.generateRandomStories(10)
     setAuthors(stories, users)
     randomLikestoStories(stories, users)
+    randomComments(stories, users)
     return {users, stories}
 }
 function setAuthors(stories, users) {
@@ -29,12 +33,35 @@ function setAuthors(stories, users) {
 function randomLikestoStories(stories, users) {
     for (const story of stories) {
         const numLikes = Math.floor(Math.random() * users.length)
-        const likedBy = []
+
         for (let i = 0; i < numLikes; i++) {
             const likerIndex = Math.floor(Math.random() * users.length)
             if (!story.likedBy.some(user => user._id === users[likerIndex]._id)) {
                 story.likedBy.push(demoUserService.getMiniUser(users[likerIndex]))
             }
+        }
+    }
+}
+function randomComment(story, users) {
+    const _id = utilService.makeId()
+    const txt = faker.lorem.sentence()
+    const posterIndex = Math.floor(Math.random() * users.length)
+    const by = demoUserService.getMiniUser(users[posterIndex])
+    const numLikes = Math.floor(Math.random() * users.length)
+    const likedBy = []
+    for (let i = 0; i < numLikes; i++) {
+        const likerIndex = Math.floor(Math.random() * users.length)
+        likedBy.push(demoUserService.getMiniUser(users[likerIndex]))
+    }
+    const comment = { _id, by, txt, likedBy }
+
+    story.comments.push(comment)
+}
+function randomComments(stories, users, maxRandomComments = 15) {
+    for (const story of stories) {
+        const numComments = Math.floor(Math.random() * maxRandomComments)
+        for (let i = 0; i < numComments; i++) {
+            randomComment(story, users)
         }
     }
 }

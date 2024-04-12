@@ -1,8 +1,12 @@
 .story-view {
   display: grid;
   grid-column: 2;
-  grid-template-rows: 46px auto 40px 18px 18px 18px 18px;
+  // grid-template-rows: 46px auto 40px 18px 18px 18px 18px;
+  grid-template-rows: 46px auto 40px 24px 24px 24px 24px;
   font-size: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  margin-bottom: 20px;
   .comment {
     .circle-container {
       display: none;
@@ -18,16 +22,26 @@
   grid-row: 2;
   width: fit-content;
 }
-
+.square-container{
+  height:42px;
+  width:42px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
 .story-info {
   grid-row: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-bottom: 12px;
+  padding-left: 4px;
 
   .story-info-button {
     margin-left: auto;
+    display: flex;
     align-items: center;
+    justify-items: center;
   }
 
   .story-info-text {
@@ -67,6 +81,33 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 .likes-section{
   grid-row:4;
+}
+
+.story-text{
+  grid-row:5;
+  margin-top: 8px;
+}
+
+.story-view-comments{
+  grid-row:6;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.story-add-comment{
+  grid-row: 7;
+  display: flex;
+  margin-top: 8px;
+  justify-items: center;
+  .story-comment-emoji{
+    margin-left:auto;
+    cursor: pointer;
+
+    &:hover {
+      color: #737373;
+    }
+  }
 }

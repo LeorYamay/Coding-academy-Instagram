@@ -7,7 +7,7 @@ import { demoUserService } from '../services/demoData/demoUser.service'
 import { utilService } from '../services/util.service'
 
 import { CommentCmp } from './Comment'
-import { CommentSvg, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
+import { CommentSvg, EmojiSVG, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
 
 export function StoryView({ story }) {
     const navigate = useNavigate()
@@ -21,12 +21,17 @@ export function StoryView({ story }) {
     const likeSection = <div className='likes-section'>
         Liked by {firstLikedBy} {andOthers}
     </div>
-
+    const hasComments = story.comments.length>0
+    const viewNCommentText = <div className='story-view-comments'> {/*add onClick to show story modal */}
+        View {(story.comments.length===1?"":"all ")+story.comments.length} comments
+    </div>
     return (
         <div className="story-view">
             <div className="story-info">
-                <div className="circle-container">
-                    <img src={story.by.imgUrl} alt="User" className="user-img circle-image" />
+                <div className='square-container'>
+                    <div className="circle-container">
+                        <img src={story.by.imgUrl} alt="User" className="user-img circle-image" />
+                    </div>
                 </div>
                 <div className='story-info-text'>
                     <span className="username story-bold-link">{story.by.fullname}</span>
@@ -38,7 +43,7 @@ export function StoryView({ story }) {
                     }
                 </div>
                 <div className='story-info-button'>
-                <ThreeDotsSVG label='more options' type ='more-button'/>
+                    <ThreeDotsSVG label='more options' type ='more-button'/>
                 </div>
             </div>
             <div className="image-section">
@@ -59,15 +64,15 @@ export function StoryView({ story }) {
                 </div>
             </div>
             {hasLikes && likeSection}
-                
-            <div className="comments-section">
-                <div className="comment">
+                <div className="comment story-text">
                     <CommentCmp comment={{by:story.by, txt:story.txt}} /> {/* Render the main post text using the Comment component */}
                 </div>
-                {story.comments.map((comment, index) => (
-                    <CommentCmp key={index} comment={comment} />
-                ))}
+                {hasComments && viewNCommentText}
+            <div className="story-add-comment">
+                <span className="add-comment-text">Add a comment...</span>
+                 <EmojiSVG label='emoji' type = 'story-comment-emoji'/>
             </div>
+            
         </div>
     )
 }

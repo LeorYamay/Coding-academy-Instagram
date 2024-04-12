@@ -174,7 +174,7 @@ export function HomeSVG({ label, type }) {
             role="img"
             viewBox="0 0 24 24"
             width="24">
-            <title>Home</title>
+            <title>{type}</title>
             <path d="M22 23h-6.001a1 1 0 0 1-1-1v-5.455a2.997 2.997 0 1 0-5.993 0V22a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V11.543a1.002 1.002 0 0 1 .31-.724l10-9.543a1.001 1.001 0 0 1 1.38 0l10 9.543a1.002 1.002 0 0 1 .31.724V22a1 1 0 0 1-1 1Z"></path>
         </svg>
     )
@@ -190,10 +190,27 @@ export function ExploreSVG({ label, type }) {
             role="img"
             viewBox="0 0 24 24"
             width="24">
-            <title>Explore</title>
+            <title>{type}</title>
             <polygon fill="none" points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></polygon>
             <polygon fillRule="evenodd" points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"></polygon>
             <circle cx="12.001" cy="12.005" fill="none" r="10.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></circle>
         </svg>
+    )
+}
+
+export function EmojiSVG({ label, type })
+{
+    return(
+        <svg
+         aria-label={label}
+         className={type} 
+         fill="currentColor" 
+         height="13" 
+         role="img" 
+         viewBox="0 0 24 24" 
+         width="13">
+            <title>{label}</title>
+            <path d="M15.83 10.997a1.167 1.167 0 1 0 1.167 1.167 1.167 1.167 0 0 0-1.167-1.167Zm-6.5 1.167a1.167 1.167 0 1 0-1.166 1.167 1.167 1.167 0 0 0 1.166-1.167Zm5.163 3.24a3.406 3.406 0 0 1-4.982.007 1 1 0 1 0-1.557 1.256 5.397 5.397 0 0 0 8.09 0 1 1 0 0 0-1.55-1.263ZM12 .503a11.5 11.5 0 1 0 11.5 11.5A11.513 11.513 0 0 0 12 .503Zm0 21a9.5 9.5 0 1 1 9.5-9.5 9.51 9.51 0 0 1-9.5 9.5Z"></path>
+            </svg>
     )
 }
