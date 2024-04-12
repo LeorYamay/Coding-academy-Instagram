@@ -1,7 +1,17 @@
-
-.story {
+.story-view {
   display: grid;
+  grid-column: 2;
   grid-template-rows: 46px auto 40px 18px 18px 18px 18px;
+  font-size: 14px;
+  .comment {
+    .circle-container {
+      display: none;
+    }
+
+    .like-button-icon {
+      display: none;
+    }
+  }
 }
 
 .image-section {
@@ -25,7 +35,6 @@
   }
 
   .username {
-    font-size: 14px;
     font-weight: bold;
   }
 
@@ -33,6 +42,7 @@
     font-size: 12px;
   }
 }
+
 
 .actions-section {
   display: flex;
@@ -51,4 +61,12 @@
       color: #737373;
     }
   }
+}
+
+.story-bold-link{
+  font-weight: bold;
+  cursor: pointer;
+}
+.likes-section{
+  grid-row:4;
 }

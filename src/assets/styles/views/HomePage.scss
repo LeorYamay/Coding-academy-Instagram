@@ -1,3 +1,7 @@
 .stories-container{
-    grid-template-rows: auto 470px auto;
+    display: grid;
+    grid-template-columns: auto 470px auto;
+}
+.story-container{
+    grid-column: 2;
 }

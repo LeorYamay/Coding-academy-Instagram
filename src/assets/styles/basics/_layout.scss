@@ -1,6 +1,6 @@
 .main-container {
     display: grid;
-    grid-template-columns: 72px 1fr 20px;
+    grid-template-columns: 72px auto;
     height: 100%;
 
     > * {
@@ -15,25 +15,25 @@
         grid-template-columns: 
             // minmax(20px, 1fr)
             72px
-            auto
+            auto;
             // minmax(auto, $mobile-breakpoint)
-            minmax(20px, 1fr);
+            // minmax(20px, 1fr);
     }
     @include for-normal-layout {
         grid-template-columns: 
             // minmax(20px, 1fr)
             72px
-            auto
+            auto;
             // minmax(auto, $narrow-breakpoint)
-            minmax(20px, 1fr);
+            // minmax(20px, 1fr);
     }
     @include for-wide-layout {
         grid-template-columns: 
             // minmax(20px, 1fr)
             244px
-            auto
+            auto;
             // minmax(auto, $normal-breakpoint)
-            minmax(20px, 1fr);
+            // minmax(20px, 1fr);
     }
 }
 

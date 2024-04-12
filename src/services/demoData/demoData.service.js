@@ -10,7 +10,7 @@ function createDemoData() {
     const stories = demoStoryService.generateRandomStories(10)
     setAuthors(stories, users)
     randomLikestoStories(stories, users)
-    return (users, stories)
+    return {users, stories}
 }
 function setAuthors(stories, users) {
     for (const story of stories) {

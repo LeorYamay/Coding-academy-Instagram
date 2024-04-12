@@ -1,40 +1,35 @@
-import { useParams } from 'react-router-dom'
-import { useState } from 'react'
+// import { useParams } from 'react-router-dom'
+// import { useState } from 'react'
+import { useNavigate, useParams } from "react-router"
 
-import { CommentCmp } from './Comment'
 import { demoStoryService } from '../services/demoData/demoStory.service'
 import { demoUserService } from '../services/demoData/demoUser.service'
-import { CommentSvg, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
 import { utilService } from '../services/util.service'
 
+import { CommentCmp } from './Comment'
+import { CommentSvg, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
 
 export function StoryView({ story }) {
-
-    const params = useParams()
-
-    const [showModal, setShowModal] = useState(false) // maybe remove for now?
-    const storyId = params.storyId
-
-    const handleCloseModal = () => setShowModal(false)
-    const handleShowModal = () => setShowModal(true)
-
+    const navigate = useNavigate()
+    
     const createdDateFormated=utilService.formatDate(story.createdAt)
 
-
-    let likeText = ""
     const hasLikes = story.likedBy.length > 0
-    if (story.likedBy.length > 0) {
-        const firstLikedBy = story.likedBy[0]
-        likeText = "Liked by " + story.likedBy[0] + (story.likedBy.length > 1) ? "and more" : ""
-    }
+    const firstLikedbyUser = (story.likedBy.length > 0) ? story.likedBy[0].fullname : ""
+    const firstLikedBy = <span className='story-liked-by story-bold-link' onClick={() => navigate(firstLikedbyUser)}>{firstLikedbyUser}</span>
+    const andOthers = <>{(story.likedBy.length > 1) && <>and <span className='story-others story-bold-link'>others</span> </>}</>
+    const likeSection = <div className='likes-section'>
+        Liked by {firstLikedBy} {andOthers}
+    </div>
+
     return (
-        <div className="story">
+        <div className="story-view">
             <div className="story-info">
                 <div className="circle-container">
                     <img src={story.by.imgUrl} alt="User" className="user-img circle-image" />
                 </div>
                 <div className='story-info-text'>
-                    <span className="username">{story.by.fullname}</span>
+                    <span className="username story-bold-link">{story.by.fullname}</span>
                     <span className=''>{"•"+createdDateFormated+"•follow"}</span>
                     {(story.loc.name) &&
                         <div className="story-location">
@@ -63,10 +58,8 @@ export function StoryView({ story }) {
                     <SaveSvg label='save' type='save-button' />
                 </div>
             </div>
-            {hasLikes &&
-                <div className='likes-section'>
-                    {likeText}
-                </div>}
+            {hasLikes && likeSection}
+                
             <div className="comments-section">
                 <div className="comment">
                     <CommentCmp comment={{by:story.by, txt:story.txt}} /> {/* Render the main post text using the Comment component */}
