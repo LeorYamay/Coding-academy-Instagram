@@ -12,6 +12,8 @@ import { SOCKET_EVENT_STORY_REMOVED, socketService, SOCKET_EVENT_STORY_ADDED, SO
 
 export function HomePage() {
     const stories = useSelector(storeState => storeState.storyModule.stories)
+    const loggedInUser = useSelector(storeState => storeState.userModule.user)
+    
     const dispatch = useDispatch()
 
     useEffect(() => {

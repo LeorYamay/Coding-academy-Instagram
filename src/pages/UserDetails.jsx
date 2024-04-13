@@ -13,7 +13,7 @@ export function UserDetails() {
     const user = useSelector(storeState => storeState.userModule.watchedUser)
 
     useEffect(() => {
-        loadUser(params.id)
+        loadUser({userName:params.id})
 
         socketService.emit(SOCKET_EMIT_USER_WATCH, params.id)
         socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
@@ -31,8 +31,12 @@ export function UserDetails() {
 
     return (
         <section className="user-details">
-            <h1>User Details</h1>
-            {user && <div>
+            {user && <>
+                <div className='square-container'>
+                    <div className="circle-container">
+                        <img src={user.imgUrl} alt="User" className="user-img circle-image" />
+                    </div>
+                </div>
                 <h3>
                     {user.fullname}
                 </h3>
@@ -42,7 +46,7 @@ export function UserDetails() {
                 <pre>
                     {JSON.stringify(user, null, 2)}
                 </pre>
-            </div>}
+            </>}
         </section>
     )
 }

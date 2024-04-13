@@ -4,6 +4,7 @@ import {utilService} from '../util.service'
 export const demoUserService = {
     generateRandomUser,
     generateRandomUsers,
+    generateAdminUser,
     randomFollowRelations,
     getMiniUser
 }
@@ -131,3 +132,8 @@ function getMiniUser(user){
     }
 }
 
+async function generateAdminUser(){
+    let user = await generateRandomUser()
+    user = {...user, username:'Admin',fullname:'Leor_Yamay',password:'12345'}
+    return user
+}

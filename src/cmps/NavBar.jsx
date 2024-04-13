@@ -2,19 +2,34 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { Link, NavLink, useSearchParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { demoUserService } from "../services/demoData/demoUser.service"
+
+import { login, logout, signup } from '../store/user.actions.js'
+
 import { ExploreSVG, HeartSvg, HomeSVG, MessagesSVG } from "./Svglist"
 //note when screen grows less wide icons shrink, 
 // when screen is even smaller navbar moves from the side to the bottom
 
 export function NavBar() {
-    // const user = useSelector(storeState => storeState.userModule.user)
+    const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const navigate = useNavigate()
-    const user = demoUserService.generateRandomUser()
+
+    useEffect(() => {
+        async function Login(){
+            const credentials = {username:'Admin'}
+            let logUser = await login(credentials)
+        }
+        !loggedInUser&&Login()
+        return () => {
+           
+        }
+
+    }, [])
+
 
 
     return (
@@ -85,13 +100,16 @@ export function NavBar() {
 
                 <span className="nav-text">Create</span>
             </div>
-            <NavLink className='nav-item' key='profile' to={user.username} >
+            {
+            loggedInUser&&
+            <NavLink className='nav-item' key='profile' to={loggedInUser.username} >
                 <div className="circle-container">
-                    <img src={user.imgUrl} alt="User Avatar" className="circle-image" />
+                    <img src={loggedInUser.imgUrl} alt="User Avatar" className="circle-image" />
                 </div>
                 <span className="nav-text">Profile</span>
                 
             </NavLink>
+            }
             <div  className="nav-item nav-more" key={'more'}>
                 <svg aria-label="Settings" className="nav-more-icon"fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
                     <title>Settings</title>

@@ -3,7 +3,7 @@ import { userService } from "../services/user.service.local.js";
 import { store } from './store.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { ADD_STORY, ADD_TO_STORYT, CLEAR_STORYT, REMOVE_STORY, REMOVE_FROM_STORYT, SET_STORIES, UNDO_REMOVE_STORY, UPDATE_STORY } from "./story.reducer.js";
-import { SET_SCORE } from "./user.reducer.js";
+// import { SET_SCORE } from "./user.reducer.js";
 
 // Action Creators:
 export function getActionRemoveStory(storyId) {
@@ -90,17 +90,17 @@ export function removeFromStoryt(storyId) {
     })
 }
 
-export async function checkout(total) {
-    try {
-        const score = await userService.changeScore(-total)
-        store.dispatch({ type: SET_SCORE, score })
-        store.dispatch({ type: CLEAR_STORYT })
-        return score
-    } catch (err) {
-        console.log('StoryActions: err in checkout', err)
-        throw err
-    }
-}
+// export async function checkout(total) {
+//     try {
+//         const score = await userService.changeScore(-total)
+//         // store.dispatch({ type: SET_SCORE, score })
+//         store.dispatch({ type: CLEAR_STORYT })
+//         return score
+//     } catch (err) {
+//         console.log('StoryActions: err in checkout', err)
+//         throw err
+//     }
+// }
 
 
 // Demo for Optimistic Mutation 

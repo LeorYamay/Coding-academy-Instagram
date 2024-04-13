@@ -1,7 +1,7 @@
 import { HomePage } from './pages/HomePage.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { StoryIndex } from './pages/StoryIndex.jsx'
-import { ReviewIndex } from './pages/ReviewIndex.jsx'
+// import { ReviewIndex } from './pages/ReviewIndex.jsx'
 import { ChatApp } from './pages/Chat.jsx'
 import { AdminApp } from './pages/AdminIndex.jsx'
 
@@ -17,11 +17,11 @@ const routes = [
         component: <StoryIndex />,
         label: 'Stories'
     },
-    {
-        path: 'review',
-        component: <ReviewIndex />,
-        label: 'Reviews'
-    },
+    // {
+    //     path: 'review',
+    //     component: <ReviewIndex />,
+    //     label: 'Reviews'
+    // },
     {
         path: 'chat',
         component: <ChatApp />,
