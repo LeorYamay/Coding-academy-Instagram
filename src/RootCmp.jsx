@@ -20,7 +20,6 @@ export function RootCmp() {
         <div className='main-container '>
             {/* <AppHeader /> */}
             <NavBar />
-            <main>
                 <Routes>
                     <Route path="/" element={<HomePage/>} />
 
@@ -40,7 +39,6 @@ export function RootCmp() {
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
                     <Route path="user/:id" element={<UserDetails />} />
                 </Routes> */}
-            </main>
             {/* <AppFooter /> */}
         </div>
     )

@@ -9,7 +9,7 @@ import { utilService } from '../services/util.service'
 import { CommentCmp } from './Comment'
 import { CommentSvg, EmojiSVG, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
 
-export function StoryView({ story }) {
+export function StoryView({ story,index }) {
     const navigate = useNavigate()
     
     const createdDateFormated=utilService.formatDate(story.createdAt)
@@ -26,7 +26,7 @@ export function StoryView({ story }) {
         View {(story.comments.length===1?"":"all ")+story.comments.length} comments
     </div>
     return (
-        <div className="story-view">
+        <div className="story-view" key = {index}>
             <div className="story-info">
                 <div className='square-container'>
                     <div className="circle-container">
@@ -46,9 +46,7 @@ export function StoryView({ story }) {
                     <ThreeDotsSVG label='more options' type ='more-button'/>
                 </div>
             </div>
-            <div className="image-section">
-                <img src={story.imgUrl} alt="Post" className="story-image" />
-            </div>
+            <img src={story.imgUrl} alt="Post" className="story-image" />
             <div className='actions-section'>
                 <div className='action-button'>
                     <HeartSvg label='like' type='like-button' />
@@ -64,12 +62,13 @@ export function StoryView({ story }) {
                 </div>
             </div>
             {hasLikes && likeSection}
-                <div className="comment story-text">
-                    <CommentCmp comment={{by:story.by, txt:story.txt}} /> {/* Render the main post text using the Comment component */}
-                </div>
+            <div className="story-text">
+                <div className="story-username username">{story.by.fullname} </div>
+                <div className="story-comment-text"> {story.txt} </div>
+            </div>
                 {hasComments && viewNCommentText}
             <div className="story-add-comment">
-                <span className="add-comment-text">Add a comment...</span>
+                <div className="add-comment-text">Add a comment...</div>
                  <EmojiSVG label='emoji' type = 'story-comment-emoji'/>
             </div>
             

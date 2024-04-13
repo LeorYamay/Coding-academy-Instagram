@@ -10,7 +10,7 @@ import { SOCKET_EVENT_STORY_REMOVED, socketService } from '../services/socket.se
 
 export function StoryIndex() {
 
-    const storys = useSelector(storeState => storeState.storyModule.storys)
+    const stories = useSelector(storeState => storeState.storyModule.stories)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -88,7 +88,7 @@ export function StoryIndex() {
             <main>
                 <button onClick={onAddStory}>Add Story ⛐</button>
                 <ul className="story-list">
-                    {storys.map(story =>
+                    {stories.map(story =>
                         <li className="story-preview" key={story._id}>
                             <h4>{story.vendor}</h4>
                             <h1>⛐</h1>

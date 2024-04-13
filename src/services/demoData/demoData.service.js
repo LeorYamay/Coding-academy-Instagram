@@ -5,17 +5,22 @@ import { demoStoryService } from './demoStory.service'
 import { utilService } from '../util.service'
 
 export const demoDataService = {
-    createDemoData
+    createDemoData,
+    UpdateStoriesWithUsers
 }
 
 function createDemoData() {
     const users = demoUserService.generateRandomUsers(10)
     const stories = demoStoryService.generateRandomStories(10)
+    UpdateStoriesWithUsers(stories, users)
+    return {users, stories}
+}
+function UpdateStoriesWithUsers(stories, users) {
     setAuthors(stories, users)
     randomLikestoStories(stories, users)
     randomComments(stories, users)
-    return {users, stories}
 }
+
 function setAuthors(stories, users) {
     for (const story of stories) {
         const randomUserIndex = Math.floor(Math.random() * users.length)

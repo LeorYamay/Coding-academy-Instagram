@@ -1,7 +1,9 @@
 
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-import { userService } from './user.service.js'
+import { userService } from './user.service.local.js'
+import { demoStoryService } from './demoData/demoStory.service.js'
+import { demoDataService } from './demoData/demoData.service.js'
 
 const STORAGE_KEY = 'story'
 
@@ -16,15 +18,27 @@ export const storyService = {
 window.cs = storyService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
-    //todo: fix this for stories
-    var stories = await storageService.query(STORAGE_KEY)
+async function query(filterBy = { txt: '', tag: '' }) {
+    let stories = await storageService.query(STORAGE_KEY)
+    if (!stories || stories.length === 0) {
+        const users = await userService.getUsers()
+        stories=demoStoryService.generateRandomStories(15)
+        demoDataService.UpdateStoriesWithUsers(stories, users)
+        storageService._save(STORAGE_KEY, stories)
+    }
     if (filterBy.txt) {
         const regex = new RegExp(filterBy.txt, 'i')
-        stories = stories.filter(story => regex.test(story.vendor) || regex.test(story.description))
+        stories = stories.filter(story => regex.test(story.txt) || regex.test(story.description))
     }
-    if (filterBy.price) {
-        stories = stories.filter(story => story.price <= filterBy.price)
+    if (filterBy.tag) {
+        stories = stories.filter(story => story.tags.some(tag=>tag===filterBy.tag))
+    }
+    if (filterBy.byUserName) {
+        const regexName = new RegExp(filterBy.byUserName, 'i')
+        stories = stories.filter(story => regex.test(story.by.fullname))
+    }
+    if (filterBy.likedById) {
+        stories = stories.filter(story => story.likedBy.some(miniUser => miniUser._id === filterBy.likedById))
     }
     return stories
 }

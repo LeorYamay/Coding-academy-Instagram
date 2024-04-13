@@ -27,15 +27,15 @@ export function getActionUpdateStory(story) {
 
 export async function loadStories() {
     try {
-        const storys = await storyService.query()
-        console.log('Storys from DB:', storys)
+        const stories = await storyService.query()
+        console.log('stories from DB:', stories)
         store.dispatch({
             type: SET_STORIES,
-            storys
+            stories
         })
 
     } catch (err) {
-        console.log('Cannot load storys', err)
+        console.log('Cannot load stories', err)
         throw err
     }
 
@@ -118,7 +118,7 @@ export function onRemoveStoryOptimistic(storyId) {
         })
         .catch(err => {
             showErrorMsg('Cannot remove story')
-            console.log('Cannot load storys', err)
+            console.log('Cannot load stories', err)
             store.dispatch({
                 type: UNDO_REMOVE_STORY,
             })

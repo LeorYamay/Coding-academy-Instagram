@@ -7,8 +7,8 @@ export const demoStoryService = {
     generateRandomStory,
     generateRandomStories
 }
-function generateRandomStory(byUser =null) {
-  const user = !byUser && demoUserService.generateRandomUser()
+function generateRandomStory(user =null) {
+  // const user = !byUser && demoUserService.generateRandomUser()
   const _id = utilService.makeId()
   const randomTagsCount = Math.floor(Math.random() * 5) + 1; // Random number of tags (1 to 5)
   const tags = Array.from({ length: randomTagsCount }, () => faker.lorem.word());
@@ -18,7 +18,7 @@ function generateRandomStory(byUser =null) {
 
   const story = {
     _id:_id,
-    txt: faker.lorem.sentence(),
+    txt: faker.lorem.sentence({min:3,max:15}),
     imgUrl: faker.image.url(),
     status: "public",
     createdAt: utilService.randomPastTime(),

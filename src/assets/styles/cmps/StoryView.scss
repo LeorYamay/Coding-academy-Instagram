@@ -1,12 +1,12 @@
 .story-view {
   display: grid;
   grid-column: 2;
-  // grid-template-rows: 46px auto 40px 18px 18px 18px 18px;
   grid-template-rows: 46px auto 40px 24px 24px 24px 24px;
   font-size: 14px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
   margin-bottom: 20px;
+  max-width: 100%;
   .comment {
     .circle-container {
       display: none;
@@ -20,7 +20,13 @@
 
 .image-section {
   grid-row: 2;
-  width: fit-content;
+  max-width: 100%;
+  height: auto;
+}
+.story-image{
+  grid-row: 2;
+  max-width: 100%;
+  height: auto;
 }
 .square-container{
   height:42px;
@@ -36,6 +42,7 @@
   align-items: center;
   padding-bottom: 12px;
   padding-left: 4px;
+  max-width: 100%;
 
   .story-info-button {
     margin-left: auto;
@@ -61,7 +68,7 @@
 .actions-section {
   display: flex;
   align-items: start;
-
+  max-width: 100%;
   .action-button:has(.save-button) {
     margin-left: auto;
   }
@@ -84,17 +91,33 @@
 
 .likes-section{
   grid-row:4;
+  max-width: 100%;
 }
 
 .story-text{
   grid-row:5;
+  display: flex;
   margin-top: 8px;
+  max-width: 100%;
+  height: 1.2em;
 }
 
+.story-comment-text {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  // white-space: nowrap; 
+  flex-grow: 1;
+  word-wrap: break-word;
+  // max-height: 100%;
+}
+// .story-username{
+//   flex: 0 0 30%;
+// }
 .story-view-comments{
   grid-row:6;
   cursor: pointer;
   margin-top: 8px;
+  max-width: 100%;
 }
 
 .story-add-comment{
@@ -102,6 +125,7 @@
   display: flex;
   margin-top: 8px;
   justify-items: center;
+  max-width: 100%;
   .story-comment-emoji{
     margin-left:auto;
     cursor: pointer;
