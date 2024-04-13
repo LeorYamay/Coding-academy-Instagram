@@ -25,11 +25,13 @@ window.userService = userService
 
 
 async function getUsers() {
+    debugger
     let users = await storageService.query(STORAGE_KEY)
     if (!users || users.length ===0){
         users = demoUserService.generateRandomUsers(15)
         const admin =await demoUserService.generateAdminUser()
         users.push(admin)
+        demoUserService.randomFollowRelations(users)
         storageService._save(STORAGE_KEY, users)
     }
     return users
@@ -53,16 +55,18 @@ function remove(userId) {
 
 }
 
-async function update({ _id, score }) {
-    const user = await storageService.get(STORAGE_KEY, _id)
-    user.score = score
+async function update(user) {
+    // const user = await storageService.get(STORAGE_KEY, _id)
+    // user.likedBy = likedBy
+    // user.followers = followers
+    // user.following = following
     await storageService.put(STORAGE_KEY, user)
 
     return user
 }
 
 async function login(userCred) {
-    const users = await storageService.query(STORAGE_KEY)
+    const users = await getUsers()
     const user = users.find(user => user.username === userCred.username)
 
     if (user) {
