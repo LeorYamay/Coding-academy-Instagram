@@ -11,6 +11,7 @@ import { CommentCmp } from './Comment'
 import { CommentSvg, EmojiSVG, HeartSvg, SaveSvg, ShareSvg, ThreeDotsSVG } from './Svglist'
 import { storyService } from "../services/story.service.local"
 import { updateStory } from "../store/story.actions"
+import { AddComment } from "./AddComment"
 
 export function StoryView({ story, index }) {
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ export function StoryView({ story, index }) {
     const createdDateFormated = utilService.formatDate(story.createdAt)
 
     const hasLikes = story.likedBy.length > 0
-    const firstLikedbyUser = (story.likedBy.length > 0) ? story.likedBy[0].fullname : ""
+    const firstLikedbyUser = (story.likedBy.length > 0) ? story.likedBy[0].username : ""
     const firstLikedBy = <span className='story-liked-by story-bold-link' onClick={() => navigate(firstLikedbyUser)}>{firstLikedbyUser}</span>
     const andOthers = <>{(story.likedBy.length > 1) && <>and <span className='story-others story-bold-link'>others</span> </>}</>
     const likeSection = <div className='likes-section'>
@@ -50,7 +51,7 @@ export function StoryView({ story, index }) {
                     </div>
                 </div>
                 <div className='story-info-text'>
-                    <span className="username story-bold-link">{story.by.fullname}</span>
+                    <span className="username story-bold-link">{story.by.username}</span>
                     <span className=''>{"•" + createdDateFormated + "•follow"}</span>
                     {(story.loc.name) &&
                         <div className="story-location">
@@ -83,10 +84,9 @@ export function StoryView({ story, index }) {
                 <div className="story-comment-text"> {story.txt} </div>
             </div>
             {hasComments && viewNCommentText}
-            <div className="story-add-comment">
-                <div className="add-comment-text">Add a comment...</div>
-                <EmojiSVG label='emoji' type='story-comment-emoji' />
-            </div>
+            <AddComment 
+            storyId={story._id}
+            loggedInUserId={loggedInUser._id}/>
 
         </div>
     )

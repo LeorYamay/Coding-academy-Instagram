@@ -1,3 +1,8 @@
+import { act } from "react-dom/test-utils"
+import { userService } from "../services/user.service.local"
+import { utilService } from "../services/util.service"
+import { storyService } from "../services/story.service.local"
+
 export const SET_STORIES = 'SET_STORIES'
 export const REMOVE_STORY = 'REMOVE_STORY'
 export const ADD_STORY = 'ADD_STORY'
@@ -6,6 +11,7 @@ export const ADD_TO_STORYT = 'ADD_TO_STORYT'
 export const CLEAR_STORYT = 'CLEAR_STORYT'
 export const UNDO_REMOVE_STORY = 'UNDO_REMOVE_STORY'
 export const REMOVE_FROM_STORYT = 'REMOVE_FROM_STORYT'
+export const ADD_COMMENT_TO_STORY = 'ADD_COMMENT_TO_STORY'
 
 const initialState = {
     stories: [],
@@ -13,10 +19,20 @@ const initialState = {
     lastRemovedStory: null
 }
 
+const addCommentToStory =async (state,action) =>{
+    const user = await userService.getById(action.loggedInUserId)
+    const _id = utilService.makeId()
+    const comment ={_id:_id,txt:action.txt,by:userService.getMiniUser(user),likedBy:[]}
+    const story = await storyService.getById(action.storyId)
+    story.comments.push(comment)
+    await storyService.save(story)
+    state.stories=state.stories.map(storyOld => storyOld._id!=story._id?storyOld:story)
+    const newState ={...state,stories:state.stories}
+    return newState
+}
+
 export function storyReducer(state = initialState, action) {
     var newState = state
-    var stories
-    var storyt
     switch (action.type) {
         case SET_STORIES:
             newState = { ...state, stories: action.stories }
@@ -48,6 +64,9 @@ export function storyReducer(state = initialState, action) {
                 newState = { ...state, stories: [...state.stories, state.lastRemovedStory], lastRemovedStory: null }
             }
             break
+            case ADD_COMMENT_TO_STORY:
+                newState=addCommentToStory(state,action)
+                break
         default:
     }
     return newState

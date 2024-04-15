@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker'
 import {utilService} from '../util.service'
+import { userService } from '../user.service.local'
 
 export const demoUserService = {
     generateRandomUser,
     generateRandomUsers,
     generateAdminUser,
     randomFollowRelations,
-    getMiniUser
 }
 function generateRandomUsers(num =10){
     const users=[]
@@ -83,12 +83,8 @@ function randomlyAssignFollowers(user, userList) {
     const followers = []
     for (let i = 0; i < numFollowers; i++) {
         const followerIndex = Math.floor(Math.random() * userList.length)
-        if (userList[followerIndex]._id !== user._id) {
-            followers.push({
-                _id: userList[followerIndex]._id,
-                fullname: userList[followerIndex].fullname,
-                imgUrl: userList[followerIndex].imgUrl
-            })
+        if ((userList[followerIndex]._id !== user._id) &&(!followers.some(follower=>follower._id===userList[followerIndex]._id))) {
+            followers.push(userService.getMiniUser(userList[followerIndex]))
         }
     }
     return followers
@@ -108,11 +104,9 @@ async function randomFollowRelations(userList) {
                     if (!followerToUpdate.following) {
                         followerToUpdate.following = [];
                     }
-                    followerToUpdate.following.push({
-                        _id: user._id,
-                        fullname: user.fullname,
-                        imgUrl: user.imgUrl
-                    });
+                    followerToUpdate.following.push(
+                        userService.getMiniUser(user)
+                    );
                 }
             }
         }
@@ -124,16 +118,10 @@ async function randomFollowRelations(userList) {
     }
 }
 
-function getMiniUser(user){
-    return{
-        _id:user._id,
-        fullname:user.fullname,
-        imgUrl:user.imgUrl
-    }
-}
+
 
 async function generateAdminUser(){
     let user = await generateRandomUser()
-    user = {...user, username:'Admin',fullname:'Leor_Yamay',password:'12345'}
+    user = {...user, username:'Admin',fullname:'Leor Yamay',password:'12345'}
     return user
 }

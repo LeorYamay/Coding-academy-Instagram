@@ -6,7 +6,7 @@ const story = {
   "createdAt":"datenow()",
   "by": {
     "_id": "u101",
-    "fullname": "Ulash Ulashi", // do we need this?
+    "username": "Ulash Ulashi", // do we need this?
     "imgUrl": "http://some-img" // do we need this?
   },
   "loc": {
@@ -19,14 +19,14 @@ const story = {
       "id": "c1001",
       "by": {
         "_id": "u105",
-        "fullname": "Bob", // do we need this?
+        "username": "Bob", // do we need this?
         "imgUrl": "http://some-img" // do we need this?
       },
       "txt": "good one!",
       "likedBy": [ // Optional
         {
           "_id": "u105",
-          "fullname": "Bob", // do we need this?
+          "username": "Bob", // do we need this?
           "imgUrl": "http://some-img" // do we need this?
         }
         //add comments to comments (two levels)
@@ -36,7 +36,7 @@ const story = {
       "id": "c1002",
       "by": {
         "_id": "u106",
-        "fullname": "Dob", // do we need this?
+        "username": "Dob", // do we need this?
         "imgUrl": "http://some-img" // do we need this?
       },
       "txt": "not good!",
@@ -45,12 +45,12 @@ const story = {
   "likedBy": [
     {
       "_id": "u105",
-      "fullname": "Bob", // do we need this?
+      "username": "Bob", // do we need this?
       "imgUrl": "http://some-img" // do we need this?
     },
     {
       "_id": "u106",
-      "fullname": "Dob", // do we need this?
+      "username": "Dob", // do we need this?
       "imgUrl": "http://some-img" // do we need this?
     }
   ],
@@ -67,14 +67,14 @@ const user = {
   "following": [
     {
       "_id": "u106",
-      "fullname": "Dob",
+      "username": "Dob",
       "imgUrl": "http://some-img"
     }
   ],
   "followers": [
     {
       "_id": "u105",
-      "fullname": "Bob",
+      "username": "Bob",
       "imgUrl": "http://some-img"
     }
   ],

@@ -8,10 +8,14 @@ import { showSuccessMsg } from '../services/event-bus.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from '../services/socket.service'
 import { ADD_FOLLOW_RELATION } from '../store/user.reducer'
 
+import { Follow } from '../cmps/Follow'
+
 export function UserDetails() {
     const params = useParams()
     const user = useSelector(storeState => storeState.userModule.watchedUser)
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
+
+    const isLoggedInUser =(user && user._id === loggedInUser._id)
 
     useEffect(() => {
         loadUser({userName:params.id})
@@ -24,19 +28,9 @@ export function UserDetails() {
         }
 
     }, [])
-    const isLoggedInUser =(user && user._id === loggedInUser._id)
-    if (user&&!isLoggedInUser){
-        const following = loggedInUser.following.some(followedUser=>followedUser._id===user._id)
-        const toggleFollow = () =>{
-            if(following){
-                store.dispatch({type:ADD_FOLLOW_RELATION,action:{follower:loggedInUser,followed:user}})
-            }else{
-                store.dispatch({type:REMOVE_FOLLOW_RELATION,action:{follower:loggedInUser,followed:user}})
-            }
-        }
-    }
+    
     function onUserUpdate(user) {
-        showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
+        showSuccessMsg(`This user ${user.fullname} just got updated from socket`)
         store.dispatch({ type: 'SET_WATCHED_USER', user })
     }
     return (
@@ -47,8 +41,8 @@ export function UserDetails() {
                         <img src={user.imgUrl} alt="User" className="user-img circle-image" />
                     </div>
                 </div>
-                <div className='profile-fullname'>
-                    {user.fullname.toLowerCase()}
+                <div className='profile-username'>
+                    {user.username.toLowerCase()}
                 </div>
                 {isLoggedInUser ? <>
                     <div className='edit-profile-button profile-button'>
@@ -58,12 +52,14 @@ export function UserDetails() {
                         View archive
                     </div>
                 </> : <>
-                    <div className='profile-following-button profile-button'>
-                        {following ? 'Following' : 'Follow'}
-                    </div>
+                    <Follow 
+                    following={loggedInUser.following}
+                    userId ={user._id}
+                    loggedInId={loggedInUser._id}
+                    />
                     <div className='profile-message-button profile-button'>
-                        Message
-                    </div>
+                            Message
+                        </div>
                 </>
                 }
                 <div className='profile-statistics'>

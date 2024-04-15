@@ -217,7 +217,7 @@ export function ExploreSVG({ label, type }) {
     )
 }
 
-export function EmojiSVG({ label, type })
+export function EmojiSVG({ label, type})
 {
     return(
         <svg

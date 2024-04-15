@@ -18,14 +18,14 @@ export const userService = {
     getByUserName,
     remove,
     update,
-     updateLocalUserFields
+     updateLocalUserFields,
+     getMiniUser
 }
 
 window.userService = userService
 
 
 async function getUsers() {
-    debugger
     let users = await storageService.query(STORAGE_KEY)
     if (!users || users.length ===0){
         users = demoUserService.generateRandomUsers(15)
@@ -47,7 +47,8 @@ async function getById(userId) {
 }
 async function getByUserName(userName) {
     const users = await storageService.query(STORAGE_KEY)
-    const user = users.filter(user=>user.username===userName).find(() => true)
+    const regexUserName = new RegExp(`${userName}`, 'i')
+    const user = users.filter(user=>regexUserName.test(user.username)).find(() => true)
     return user
 }
 function remove(userId) {
@@ -105,6 +106,13 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
+function getMiniUser(user){
+    return{
+        _id:user._id,
+        username:user.username,
+        imgUrl:user.imgUrl
+    }
+}
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})

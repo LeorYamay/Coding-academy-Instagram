@@ -11,6 +11,7 @@ import { SOCKET_EVENT_STORY_REMOVED, socketService, SOCKET_EVENT_STORY_ADDED, SO
 // import { SOCKET_EVENT_STORY_REMOVED, socketService } from '../services/socket.service.js'
 
 export function HomePage() {
+    debugger
     const stories = useSelector(storeState => storeState.storyModule.stories)
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
     
@@ -41,7 +42,7 @@ export function HomePage() {
     // const stories = demoStoryService.generateRandomStories(2);
     return (
         <main className="stories-container">
-            {stories.map((s) =>(<StoryView story={s} index={s._id} key ={s._id} />))}
+            {(stories)&&stories.map((s) =>(<StoryView story={s} index={s._id} key ={s._id} />))}
         </main >
     )
 }
