@@ -1,88 +1,127 @@
 import { userService } from "../services/user.service.local.js";
 import { socketService } from "../services/socket.service.js";
-import { store } from '../store/store.js'
+import { store } from "../store/store.js";
 
-import { showErrorMsg } from '../services/event-bus.service.js'
+import { showErrorMsg } from "../services/event-bus.service.js";
 import { LOADING_DONE, LOADING_START } from "./system.reducer.js";
-import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from "./user.reducer.js";
+import {
+  REMOVE_USER,
+  SET_USER,
+  SET_USERS,
+  SET_WATCHED_USER,
+} from "./user.reducer.js";
 
 export async function loadUsers() {
-    try {
-        store.dispatch({ type: LOADING_START })
-        const users = await userService.getUsers()
-        store.dispatch({ type: SET_USERS, users })
-    } catch (err) {
-        console.log('UserActions: err in loadUsers', err)
-    } finally {
-        store.dispatch({ type: LOADING_DONE })
-    }
+  try {
+    store.dispatch({ type: LOADING_START });
+    const users = await userService.getUsers();
+    store.dispatch({ type: SET_USERS, users });
+  } catch (err) {
+    console.log("UserActions: err in loadUsers", err);
+  } finally {
+    store.dispatch({ type: LOADING_DONE });
+  }
 }
 
 export async function removeUser(userId) {
-    try {
-        await userService.remove(userId)
-        store.dispatch({ type: REMOVE_USER, userId })
-    } catch (err) {
-        console.log('UserActions: err in removeUser', err)
-    }
+  try {
+    await userService.remove(userId);
+    store.dispatch({ type: REMOVE_USER, userId });
+  } catch (err) {
+    console.log("UserActions: err in removeUser", err);
+  }
 }
 
 export async function login(credentials) {
-    try {
-        const user = await userService.login(credentials)
-        store.dispatch({
-            type: SET_USER,
-            user
-        })
-        socketService.login(user._id)
-        return user
-    } catch (err) {
-        console.log('Cannot login', err)
-        throw err
-    }
+  try {
+    const user = await userService.login(credentials);
+    store.dispatch({
+      type: SET_USER,
+      user,
+    });
+    socketService.login(user._id);
+    return user;
+  } catch (err) {
+    console.log("Cannot login", err);
+    throw err;
+  }
 }
 
 export async function signup(credentials) {
-    try {
-        const user = await userService.signup(credentials)
-        store.dispatch({
-            type: SET_USER,
-            user
-        })
-        socketService.login(user._id)
-        return user
-    } catch (err) {
-        console.log('Cannot signup', err)
-        throw err
-    }
+  try {
+    const user = await userService.signup(credentials);
+    store.dispatch({
+      type: SET_USER,
+      user,
+    });
+    socketService.login(user._id);
+    return user;
+  } catch (err) {
+    console.log("Cannot signup", err);
+    throw err;
+  }
 }
 
 export async function logout() {
-    try {
-        await userService.logout()
-        store.dispatch({
-            type: SET_USER,
-            user: null
-        })
-        socketService.logout()
-    } catch (err) {
-        console.log('Cannot logout', err)
-        throw err
-    }
+  try {
+    await userService.logout();
+    store.dispatch({
+      type: SET_USER,
+      user: null,
+    });
+    socketService.logout();
+  } catch (err) {
+    console.log("Cannot logout", err);
+    throw err;
+  }
 }
 
 export async function loadUser(input) {
-    try {
-        let user = null
-        if (input.userName){
-            user = await userService.getByUserName(input.userName)
-        }
-        else {
-            user = await userService.getById(input)
-        }
-        store.dispatch({ type: SET_WATCHED_USER, user })
-    } catch (err) {
-        showErrorMsg('Cannot load user')
-        console.log('Cannot load user', err)
+  try {
+    let user = null;
+    if (input.userName) {
+      user = await userService.getByUserName(input.userName);
+    } else {
+      user = await userService.getById(input);
     }
+    store.dispatch({ type: SET_WATCHED_USER, user });
+  } catch (err) {
+    showErrorMsg("Cannot load user");
+    console.log("Cannot load user", err);
+  }
+}
+
+export async function setUserFollowingId(followerId, followedId,followedIsWatched) {
+  try {
+    const followedUser = await userService.getById(followedId);
+    const followerUser = await userService.getById(followerId);
+    followedUser.followers.push(userService.getMiniUser(followerUser));
+    await userService.update(followedUser);
+    followerUser.following.push(userService.getMiniUser(followedUser));
+    userService.saveLocalUser(followerUser);
+    store.dispatch({ type: SET_USER, user: await userService.update(followerUser) });
+  } catch (err) {
+    showErrorMsg("Failed to follow user");
+    console.log("Failed to follow user", err);
+  }
+}
+
+export async function removeUserFollowingId(followerId, followedId,followedIsWatched) {
+  try {
+    const followedUser = await userService.getById(followedId);
+    followedUser.followers = followedUser.followers.filter(
+      (follower) => follower._id != followerId
+    );
+    const followerUser = await userService.getById(followerId);
+    followerUser.following = followerUser.following.filter(
+      (followed) => followed._id != followedId
+    );
+    await userService.update(followedUser);
+    userService.saveLocalUser(followerUser);
+    await userService.update(followerUser);
+    store.dispatch({ type: SET_USER, user: followerUser });
+  } catch (err) {
+    showErrorMsg("Failed to un-follow user");
+    console.log("Failed to un-follow user", err);
+  }
 }

@@ -19,6 +19,7 @@
 @import "views/StoryIndex";
 @import "views/ReviewIndex";
 @import "views/UserDetails";
+@import "views/StoryView.scss";
 
 // Components
 @import "cmps/AppHeader";
@@ -26,7 +27,7 @@
 @import "cmps/UserMsg";
 @import "cmps/ShoppingCart";
 @import "cmps/NavBar.scss";
-@import "cmps/StoryView.scss";
+@import "cmps/StoryPreview.scss";
 @import "cmps/Comment.scss";
 @import "cmps/AddComment.scss";
 

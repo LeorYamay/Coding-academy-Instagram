@@ -1,34 +1,74 @@
 .user-details {
-    padding-top: 30px;
-    padding:20px;
-    padding-bottom: 0px;
-    margin-top: 0px;
-    margin:11.5px ;
-    margin-bottom:30px ;
-    .user-img {
-        height: 200px;
-        width: 200px;
-        background-size: contain;
+  padding-top: 30px;
+  padding: 20px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin: 11.5px;
+  margin-bottom: 30px;
+  .info-container{
+    display: flex;
+  }
+  .options{
+    display: flex;
+    height:40px;
+    margin-bottom: 20px;
+    button{
+      background-color: #efefef;
+      color: black;
+      border-radius: 8px;
+      height: 32px;
+      width: 101px;
+      font-weight: bold;
+      :hover{
+  
+      }
     }
-    .square-container{
-        height:150px;
-        width:300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .circle-container {
-        width: 150px; 
-        height: 150px; 
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      .circle-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* maintain aspect ratio */
-      }
-      .profile-fullname{
-        font-size: 20px;
-      }
+  }
+  .user-img {
+    height: 200px;
+    width: 200px;
+    background-size: contain;
+  }
+  .square-container {
+    height: 150px;
+    width: 283px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .circle-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .circle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* maintain aspect ratio */
+  }
+  .profile-username {
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+  .user-fullname{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .user-bio{
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .profile-statistics {
+    display: flex;
+    width: 562px;
+    gap: 40px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    .bold-number{
+      font-weight: bold;
+    }
+  }
 }

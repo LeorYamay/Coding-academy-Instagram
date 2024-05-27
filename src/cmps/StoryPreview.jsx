@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { demoStoryService } from '../services/demoData/demoStory.service'
 import { demoUserService } from '../services/demoData/demoUser.service'
+import { userService } from "../services/user.service.local"
 import { utilService } from '../services/util.service'
 
 import { CommentCmp } from './Comment'
@@ -13,7 +14,7 @@ import { storyService } from "../services/story.service.local"
 import { updateStory } from "../store/story.actions"
 import { AddComment } from "./AddComment"
 
-export function StoryView({ story, index }) {
+export function StoryPreview({ story, index }) {
     const navigate = useNavigate()
     const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
@@ -32,18 +33,18 @@ export function StoryView({ story, index }) {
             story.likedBy = story.likedBy.filter(likeUser => likeUser._id != loggedInUser._id)
         }
         else {
-            story.likedBy.push(demoUserService.getMiniUser(loggedInUser))
+            story.likedBy.push(userService.getMiniUser(loggedInUser))
         }
         updateStory(story)
     }
 
     const hasComments = story.comments.length > 0
-    const viewNCommentText = <div className='story-view-comments'> {/*add onClick to show story modal */}
+    const viewNCommentText = <div className='story-preview-comments'> {/*add onClick to show story modal */}
         View {(story.comments.length === 1 ? "" : "all ") + story.comments.length} comments
     </div>
 
     return (
-        <div className="story-view" key={index}>
+        <div className="story-preview" key={index}>
             <div className="story-info">
                 <div className='square-container'>
                     <div className="circle-container">
@@ -51,8 +52,9 @@ export function StoryView({ story, index }) {
                     </div>
                 </div>
                 <div className='story-info-text'>
-                    <span className="username story-bold-link">{story.by.username}</span>
-                    <span className=''>{"•" + createdDateFormated + "•follow"}</span>
+                    <span className="username story-bold-link" onClick={()=>navigate(story.by.username)}>{story.by.username}</span>
+                    {/* <span className=''>{"•" + createdDateFormated + "•follow"}</span> */}
+                    <span className=''>{"• " + createdDateFormated }</span>
                     {(story.loc.name) &&
                         <div className="story-location">
                             {story.loc.name}
@@ -68,7 +70,7 @@ export function StoryView({ story, index }) {
                 <div className='action-button' onClick={() => (likeToggle())}>
                     <HeartSvg label={(likedByLoggedInUser ? 'un' : '') + 'like'} type='like-button' full={likedByLoggedInUser ? 'pink' : likedByLoggedInUser} />
                 </div>
-                <div className='action-button'>
+                <div className='action-button' onClick={()=>navigate('/p/'+story._id)}>
                     <CommentSvg label='comment' type='comment-button' />
                 </div>
                 <div className='action-button'>
@@ -80,7 +82,7 @@ export function StoryView({ story, index }) {
             </div>
             {hasLikes && likeSection}
             <div className="story-text">
-                <div className="story-username username">{story.by.fullname} </div>
+                <div className="story-username username story-bold-link" onClick={()=>navigate(story.by.username)}>{story.by.username} </div>
                 <div className="story-comment-text"> {story.txt} </div>
             </div>
             {hasComments && viewNCommentText}

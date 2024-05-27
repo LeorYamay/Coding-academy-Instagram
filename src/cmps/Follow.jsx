@@ -1,25 +1,28 @@
-import { store } from "../store/store"
-import { ADD_FOLLOW_RELATION, REMOVE_FOLLOW_RELATION } from "../store/user.reducer"
+import { useSelector } from "react-redux";
+import { store } from "../store/store";
+import { removeUserFollowingId, setUserFollowingId } from "../store/user.actions";
 
 
-
-export function Follow({ following, userId }) {
-    const inFollowList = following.some(followedUser => followedUser._id === userId)
-
-    const toggleFollow = () => {
-        if (!inFollowList) {
-            store.dispatch({ type: ADD_FOLLOW_RELATION,  userId: userId })
-        } else {
-            store.dispatch({ type: REMOVE_FOLLOW_RELATION,  userId: userId  })
-        }
+export function Follow({ userId }) {
+  const loggedInUser = useSelector((storeState) => storeState.userModule.user);
+  const inFollowList = loggedInUser.following.some(
+    (followedUser) => followedUser._id === userId
+  );
+  const toggleFollow = () => {
+    if (!inFollowList) {
+      setUserFollowingId(loggedInUser._id, userId);
+    } else {
+      removeUserFollowingId(loggedInUser._id, userId);
     }
+  };
 
-
-    return (
-        <div className='profile-following-button profile-button' onClick={() => (toggleFollow())}>
-            {inFollowList ? 'Following' : 'Follow'}
-        </div>
-
-
-    )
+  return (
+    <button
+      className="profile-following-button profile-button"
+      onClick={() => toggleFollow()}
+    >
+      {inFollowList ? "Following" : "Follow"}
+    </button>
+    //follow back option
+  );
 }

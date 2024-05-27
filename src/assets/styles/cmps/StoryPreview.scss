@@ -1,4 +1,4 @@
-.story-view {
+.story-preview {
   display: grid;
   grid-column: 2;
   grid-template-rows: 46px auto 40px 24px 24px 24px 24px;
@@ -6,7 +6,8 @@
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
   margin-bottom: 20px;
-  max-width: 100%;
+  max-width: 470px;
+  justify-self: center;
   .comment {
     .circle-container {
       display: none;
@@ -67,10 +68,16 @@
 
 .actions-section {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   max-width: 100%;
+  position: relative;
+
+   .action-button:first-child {
+    padding-left: 0px;
+  }
   .action-button:has(.save-button) {
     margin-left: auto;
+    padding-right: 0px;
   }
 
   .action-button {
@@ -110,7 +117,7 @@
   word-wrap: break-word;
 }
 
-.story-view-comments{
+.story-preview-comments{
   grid-row:6;
   cursor: pointer;
   margin-top: 8px;

@@ -8,8 +8,8 @@ export const SET_USER = 'SET_USER'
 export const SET_WATCHED_USER = 'SET_WATCHED_USER'
 export const REMOVE_USER = 'REMOVE_USER'
 export const SET_USERS = 'SET_USERS'
-export const ADD_FOLLOW_RELATION = 'ADD_FOLLOW_RELATION'
-export const REMOVE_FOLLOW_RELATION = 'REMOVE_FOLLOW_RELATION'
+export const UPDATE_USER = 'UPDATE_USER'
+
 
 const initialState = {
     user: userService.getLoggedinUser(),
@@ -17,31 +17,14 @@ const initialState = {
     stories: [],
     watchedUser : null
 }
-const addFollowRelation = async (action, state) => {
-    const followedUser =await userService.getById (action.userId)
-    followedUser.followers.push(userService.getMiniUser(state.user))
-    await userService.update(followedUser)
-    state.user.following.push(userService.getMiniUser(followedUser))
-    await userService.update(state.user)
-    const newState = { ...state, user: { ...state.user} }
-    return newState
-}
-const removeFollowRelation = async (action, state) => {
-    debugger
-    const followedUser =userService.getById (action.userId)
-    followedUser.followers=followedUser.followers.filter(follower=>follower._id!=state.user._id)
-    await userService.update(followedUser)
-    state.user.following =state.user.following.filter(following=>following._id!=action.userId)
-    await userService.update(state.user)     
-    const newState = { ...state, user: { ...users, followed, follower } }
-    return newState
-}
+
 export function userReducer(state = initialState, action) {
     var newState = state
     switch (action.type) {
         case SET_USER:
             newState = { ...state, user: action.user }
             break
+            
         case SET_WATCHED_USER:
             newState = { ...state, watchedUser: action.user }
             break
@@ -53,13 +36,6 @@ export function userReducer(state = initialState, action) {
             break
         case SET_USERS:
             newState = { ...state, users: action.users }
-            break
-        case ADD_FOLLOW_RELATION:
-            debugger
-            newState =addFollowRelation(action,state)
-            break
-        case REMOVE_FOLLOW_RELATION:
-            newState =removeFollowRelation(action,state)
             break
         default:
         

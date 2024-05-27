@@ -1,0 +1,142 @@
+.stories-container{
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 630px 1fr;
+  max-width: 100%;
+}
+
+.story-view {
+  display: grid;
+  grid-column: 2;
+  grid-template-rows: 46px auto 40px 24px 24px 24px 24px;
+  font-size: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  margin-bottom: 20px;
+  max-width: 470px;
+  justify-self: center;
+  .comment {
+    .circle-container {
+      display: none;
+    }
+
+    .like-button-icon {
+      display: none;
+    }
+  }
+}
+
+.image-section {
+  grid-row: 2;
+  max-width: 100%;
+  height: auto;
+}
+.story-image{
+  grid-row: 2;
+  max-width: 100%;
+  height: auto;
+}
+.square-container{
+  height:42px;
+  width:42px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.story-info {
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 12px;
+  padding-left: 4px;
+  max-width: 100%;
+
+  .story-info-button {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .story-info-text {
+    align-items: center;
+  }
+
+  .username {
+    font-weight: bold;
+  }
+
+  .story-location {
+    font-size: 12px;
+  }
+}
+
+
+.actions-section {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+  position: relative;
+
+   .action-button:first-child {
+    padding-left: 0px;
+  }
+  .action-button:has(.save-button) {
+    margin-left: auto;
+    padding-right: 0px;
+  }
+
+  .action-button {
+    border: 0;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+      color: #737373;
+    }
+  }
+}
+
+.story-bold-link{
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.likes-section{
+  grid-row:4;
+  max-width: 100%;
+}
+
+.story-text{
+  grid-row:5;
+  display: flex;
+  margin-top: 8px;
+  max-width: 100%;
+  height: 1.2em;
+}
+
+.story-comment-text {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  // white-space: nowrap; 
+  flex-grow: 1;
+  word-wrap: break-word;
+}
+
+.story-view-comments{
+  grid-row:6;
+  cursor: pointer;
+  margin-top: 8px;
+  max-width: 100%;
+}
+
+.story-add-comment{
+  grid-row: 7;
+  display: flex;
+  margin-top: 8px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  
+}

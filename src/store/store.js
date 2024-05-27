@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
     storyModule: storyReducer,
     userModule: userReducer,
     systemModule: systemReducer,
-    reviewModule: reviewReducer,
 })
 
 

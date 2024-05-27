@@ -8,6 +8,7 @@ const initialState = {
 }
 
 export function reviewReducer(state = initialState, action = {}) {
+    
     switch (action.type) {
         case SET_REVIEWS:
             return { ...state, reviews: action.reviews }
