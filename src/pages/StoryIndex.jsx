@@ -56,11 +56,10 @@ export function StoryIndex() {
     }
 
     async function onUpdateStory(story) {
-        const price = +prompt('New price?')
-        const storyToSave = { ...story, price }
+        const storyToSave = { ...story}
         try {
             const savedStory = await updateStory(storyToSave)
-            showSuccessMsg(`Story updated, new price: ${savedStory.price}`)
+            showSuccessMsg(`Story updated`)
         } catch (err) {
             showErrorMsg('Cannot update story')
         }

@@ -1,16 +1,42 @@
-.comment{
-    display:flex;
-}
-.username{
+.comment {
+  display: flex;
+  padding: 12px 0px;
+  .username {
     font-size: 14px;
     font-weight: bold;
-    font-family:'Segoe UI', sans-serif;
+    font-family: "Segoe UI", sans-serif;
     white-space: nowrap;
     padding-right: 5px;
-}
-.comment-text {
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    white-space: nowrap; 
-    flex-grow: 1; 
+    cursor: pointer;
   }
+  //   .comment-text {
+  //     overflow: hidden;
+  //     text-overflow: ellipsis;
+  //     white-space: nowrap;
+  //     flex-grow: 1;
+  //   }
+  .square-container{
+      margin-right: 8px; 
+      height: auto;   
+      width: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+  }
+  .circle-container {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+  }
+  .text-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .like-button-icon {
+    margin-left: auto;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+  }
+}

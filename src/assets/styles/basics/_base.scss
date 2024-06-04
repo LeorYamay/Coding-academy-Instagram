@@ -2,16 +2,16 @@
     box-sizing: border-box;
 }
 
-::selection {
-    background-color: $clr1;
-    color: $clr6;
-}
+// ::selection {
+//     background-color: $clr1;
+//     color: $clr6;
+// }
 
 html {
     font-family: 'Segoe UI', 'Roboto', 'Helvetica', sans-serif;
 
     line-height: 1.6;
-    color: $clr2;
+    // color: $clr2;
     height: 100%;
 }
 #root{

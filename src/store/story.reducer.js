@@ -11,35 +11,20 @@ export const ADD_TO_STORYT = "ADD_TO_STORYT";
 export const CLEAR_STORYT = "CLEAR_STORYT";
 export const UNDO_REMOVE_STORY = "UNDO_REMOVE_STORY";
 export const REMOVE_FROM_STORYT = "REMOVE_FROM_STORYT";
-export const ADD_COMMENT_TO_STORY = "ADD_COMMENT_TO_STORY";
+// export const ADD_COMMENT_TO_STORY = "ADD_COMMENT_TO_STORY";
+export const SET_CURRENT_STORY = "SET_CURRENT_STORY";
+export const UPDATE_CURRENT_STORY = "UPDATE_CURRENT_STORY";
 
 const initialState = {
   stories: [],
   storyt: [],
   lastRemovedStory: null,
+  currentStory: null,
 };
 
-const addCommentToStory = async (state, action) => {
-  const user = await userService.getById(action.loggedInUserId);
-  const _id = utilService.makeId();
-  const comment = {
-    _id: _id,
-    txt: action.txt,
-    by: userService.getMiniUser(user),
-    likedBy: [],
-  };
-  const story = await storyService.getById(action.storyId);
-  story.comments.push(comment);
-  await storyService.save(story);
-  state.stories = state.stories.map((storyOld) =>
-    storyOld._id != story._id ? storyOld : story
-  );
-  const newState = { ...state, stories: state.stories };
-  return newState;
-};
 
 export function storyReducer(state = initialState, action) {
-  var newState = {...state};
+  var newState = { ...state };
   switch (action.type) {
     case SET_STORIES:
       newState = { ...state, stories: action.stories };
@@ -79,10 +64,13 @@ export function storyReducer(state = initialState, action) {
         };
       }
       break;
-    case ADD_COMMENT_TO_STORY:
-      newState = addCommentToStory(state, action);
+    case SET_CURRENT_STORY:
+      newState = { ...state, currentStory: action.story };
       break;
-    default:
+    case UPDATE_CURRENT_STORY:
+      const newCurrentStory = {...action.story}
+      newState = { ...state, currentStory: newCurrentStory };
+      break;
   }
   return newState;
 }

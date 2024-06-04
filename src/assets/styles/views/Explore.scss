@@ -1,0 +1,16 @@
+
+.explore-img{
+    height: 309px;
+    width: 309px;
+}
+.explore-img-container{
+    display: grid;
+    grid-template-columns: repeat(3, 309px);
+    gap: 4px;
+    padding:  0px 20px;
+    margin: 0px 150px 30px;
+}
+.explore-container{
+    display: flex;
+    justify-content: center;
+}
