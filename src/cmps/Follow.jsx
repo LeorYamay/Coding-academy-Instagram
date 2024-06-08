@@ -1,12 +1,17 @@
 import { useSelector } from "react-redux";
 import { store } from "../store/store";
-import { removeUserFollowingId, setUserFollowingId } from "../store/user.actions";
-
+import {
+  removeUserFollowingId,
+  setUserFollowingId,
+} from "../store/user.actions";
 
 export function Follow({ userId }) {
   const loggedInUser = useSelector((storeState) => storeState.userModule.user);
   const inFollowList = loggedInUser.following.some(
     (followedUser) => followedUser._id === userId
+  );
+  const inFollowingList = loggedInUser.followers.some(
+    (followingUser) => followingUser._id === userId
   );
   const toggleFollow = () => {
     if (!inFollowList) {
@@ -21,7 +26,9 @@ export function Follow({ userId }) {
       className="profile-following-button profile-button"
       onClick={() => toggleFollow()}
     >
-      {inFollowList ? "Following" : "Follow"}
+      {`${
+        inFollowList ? "Following" : `Follow ${inFollowingList ? "back" : ""}`
+      }`}
     </button>
     //follow back option
   );

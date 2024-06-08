@@ -19,7 +19,8 @@ import {
 } from "./Svglist";
 import { storyService } from "../services/story.service.local";
 import { updateStory } from "../store/story.actions";
-import { AddComment } from "./AddComment";
+import { AddCommentToPreview } from "./AddCommentToPreview";
+import { Tag, Tags } from "./Tag";
 
 export function StoryPreview({ story, index }) {
   const navigate = useNavigate();
@@ -83,7 +84,7 @@ export function StoryPreview({ story, index }) {
       {/*add onClick to show story modal */}
       View {(story.comments.length === 1 ? "" : "all ") +
         story.comments.length}{" "}
-      comments
+      comment{story.comments.length === 1 ? "" : "s"}
     </div>
   );
 
@@ -154,16 +155,19 @@ export function StoryPreview({ story, index }) {
       </div>
       {hasLikes && likeSection}
       <div className="story-text">
-        <div
+        <span
           className="story-username username story-bold-link"
           onClick={() => navigate("/" + story.by.username)}
         >
           {story.by.username}{" "}
-        </div>
-        <div className="story-comment-text"> {story.txt} </div>
+        </span>
+        <span className="story-comment-text">
+          {" "}
+          {story.txt }  <br/> {<Tags tags={story.tags} />}{" "}
+        </span>
       </div>
       {hasComments && viewNCommentText}
-      <AddComment story={story} loggedInUser={loggedInUser} />
+      <AddCommentToPreview story={story} loggedInUser={loggedInUser} />
     </div>
   );
 }

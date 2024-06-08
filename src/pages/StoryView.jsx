@@ -21,7 +21,7 @@ import {
   ThreeDotsSVG,
 } from "../cmps/Svglist";
 
-import { AddComment } from "../cmps/AddComment";
+import { AddCommentToPreview } from "../cmps/AddCommentToPreview";
 import { CommentSection } from "../cmps/CommentSection";
 // import { CommentCmp } from "../cmps/Comment";
 
@@ -140,6 +140,7 @@ export function StoryView() {
             storyText={story.txt}
             storyBy={story.by}
             comments={story.comments}
+            tags={story.tags}
           />
         </div>
         <div className="interactions-container">
@@ -173,7 +174,7 @@ export function StoryView() {
           <div className="story-comment-text"> {story.txt} </div>
         </div>
         {hasComments && viewNCommentText} */}
-        <AddComment story={story} loggedInUser={loggedInUser} />
+        <AddCommentToPreview story={story} loggedInUser={loggedInUser} />
       </div>
     </main>
   );

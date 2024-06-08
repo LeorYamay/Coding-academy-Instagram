@@ -1,31 +1,30 @@
 .story-view {
   display: flex;
   font-size: 14px;
-  padding: 51px 20px 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  margin: 51px 20px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.0975);
   margin-bottom: 20px;
   justify-self: center;
-
-  // .comment {
-  //   .circle-container {
-  //     display: none;
-  //   }
-
-  //   .like-button-icon {
-  //     display: none;
-  //   }
-  // }
-
+  height: 599px;
   .image-container {
     display: flex;
-
-    width: 599px;
-    height: 599px;
-  }
-
-  .story-image {
-    width: 599px;
-    height: fit-content;
+    // width: 100%;
+    // max-width: 599px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    position: relative;
+    align-items: center;
+    background-color: black;
+    &::before {
+      content: "";
+      display: block;
+      padding-top: 100%; // 1:1 aspect ratio
+    }
+    .story-image {
+      width: 100%;
+      height: fit-content;
+      overflow: hidden;
+    }
   }
 
   .square-container {
@@ -35,55 +34,72 @@
     align-items: center;
     justify-content: center;
   }
-
-  .story-info {
+  .story-sidebar {
     display: flex;
-    // flex-direction: column;
-    align-items: center;
-    padding: 14px 16px 16px 14px;
-    max-width: 100%;
-
-    .story-info-button {
-      margin-left: auto;
+    flex-direction: column;
+    .story-info {
       display: flex;
       align-items: center;
-      justify-content: center;
+      padding: 14px 16px 16px 14px;
+      max-width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+
+      .story-info-button {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .story-info-text {
+        align-items: center;
+      }
+
+      .username {
+        font-weight: bold;
+      }
+
+      .story-location {
+        font-size: 12px;
+      }
     }
+    .interactions-container {
+      padding: 6px 16px;
+      .actions-section {
+        display: flex;
+        align-items: flex-start;
+        max-width: 100%;
+        position: relative;
 
-    .story-info-text {
-      align-items: center;
+        .action-button:has(.save-button) {
+          margin-left: auto;
+        }
+
+        .action-button {
+          border: 0;
+          padding: 8px;
+          cursor: pointer;
+
+          &:hover {
+            color: #737373;
+          }
+        }
+      }
+      .likes-section {
+        width: 100%;
+      }
     }
+    .comment-section-container {
+      display: flex;
+      width: 380px;
+      flex: 1;
+      height: 1%;
 
-    .username {
-      font-weight: bold;
-    }
-
-    .story-location {
-      font-size: 12px;
-    }
-  }
-
-  .actions-section {
-    display: flex;
-    align-items: flex-start;
-    max-width: 100%;
-    position: relative;
-
-    // .action-button:first-child {
-    //   padding-left: 0px;
-    // }
-    .action-button:has(.save-button) {
-      margin-left: auto;
-      // padding-right: 0px;
-    }
-
-    .action-button {
-      border: 0;
-      padding: 8px;
-      cursor: pointer;
-
-      &:hover {
-        color: #737373;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+      .comment-section {
+        padding: 0px 16px;
+        overflow-y: scroll;
+        flex: 1;
       }
     }
   }
@@ -93,33 +109,11 @@
     cursor: pointer;
   }
 
-  .likes-section {
-    width: 100%;
-  }
-
-  .story-view-comments {
-    cursor: pointer;
-    margin-top: 8px;
-    max-width: 100%;
-  }
-
   .story-add-comment {
     display: flex;
     margin-top: 8px;
     align-items: center;
     justify-content: space-between;
     max-width: 100%;
-  }
-  .comment-section-container {
-    width: 380px;
-    height: 318px;
-    overflow-y: auto;
-  }
-  .comment-section {
-    padding: 0px 16px;
-  }
-
-  .interactions-container{
-    padding: 6px 16px;
   }
 }

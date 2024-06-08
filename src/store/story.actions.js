@@ -128,7 +128,7 @@ export async function setCurrentStory(storyId) {
   } else {
     const storyFromStorage = await storyService.getById(storyId);
     if (storyFromStorage){
-      store.dispatch({ type: SET_CURRENT_STORY, storyFromStorage });
+      store.dispatch({ type: SET_CURRENT_STORY, story:storyFromStorage });
     }else{
       store.dispatch({ type: SET_CURRENT_STORY, story:null });
     }

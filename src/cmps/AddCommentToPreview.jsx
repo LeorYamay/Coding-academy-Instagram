@@ -7,7 +7,7 @@ import { utilService } from "../services/util.service";
 import {  updateStory } from "../store/story.actions";
 // import { ADD_COMMENT_TO_STORY } from '../store/story.reducer'
 
-export function AddComment({ loggedInUser, story }) {
+export function AddCommentToPreview({ loggedInUser, story }) {
   const [commentTxt, setCommentTxt] = useState("");
   const handleInputChange = (event) => {
     setCommentTxt(event.target.value);
@@ -32,7 +32,7 @@ export function AddComment({ loggedInUser, story }) {
     setCommentTxt("");
   };
   return (
-    <div className="story-add-comment">
+    <div className="preview-add-comment">
       <input
         type="text"
         className="add-comment-input"
@@ -40,14 +40,14 @@ export function AddComment({ loggedInUser, story }) {
         value={commentTxt}
         onChange={handleInputChange}
       />
-      <div className="story-comment-buttons">
+      <div className="preview-comment-buttons">
         {commentTxt && (
           <button className="post-button" onClick={() => postComment()}>
             Post
           </button>
         )}
-        <div className="story-emoji-button" onClick={addEmojiToComment}>
-          <EmojiSVG label="emoji" type="story-comment-emoji" />
+        <div className="preview-emoji-button" onClick={addEmojiToComment}>
+          <EmojiSVG label="emoji" type="preview-comment-emoji" />
         </div>
       </div>
     </div>

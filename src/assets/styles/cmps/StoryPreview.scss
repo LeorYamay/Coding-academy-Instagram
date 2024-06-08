@@ -1,7 +1,7 @@
 .story-preview {
   display: grid;
   grid-column: 2;
-  grid-template-rows: 46px auto 40px 24px 24px 24px 24px;
+  grid-template-rows: 46px auto 40px 24px auto 24px 24px;
   font-size: 14px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
@@ -102,18 +102,22 @@
 
   .story-text {
     grid-row: 5;
-    display: flex;
+    gap: 4px;
     margin-top: 8px;
-    max-width: 100%;
-    height: 1.2em;
-  }
-
-  .story-comment-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    // white-space: nowrap;
-    flex-grow: 1;
-    word-wrap: break-word;
+    width: 470px;
+    max-height: 100%;
+    .story-username {
+      white-space: nowrap;
+    }
+    .story-comment-text {
+      // overflow: hidden;
+      // text-overflow: ellipsis;
+      // flex-grow: 1;
+      // word-wrap: break-word;
+      // white-space:wrap;
+      // max-width:100%;
+      // overflow: hidden;
+    }
   }
 
   .story-preview-comments {
@@ -123,12 +127,12 @@
     max-width: 100%;
   }
 
-  .story-add-comment {
+  .preview-add-comment {
     grid-row: 7;
-    display: flex;
+    // display: flex;
     margin-top: 8px;
-    align-items: center;
-    justify-content: space-between;
+    // align-items: center;
+    // justify-content: space-between;
     max-width: 100%;
   }
 }

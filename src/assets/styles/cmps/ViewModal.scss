@@ -1,0 +1,55 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  //   padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  .story-view {
+    padding: 0px;
+    border: none;
+    margin: 0px;
+    height:1231px;
+    
+    // .image-container {
+    //   width: 1231px;
+    //   max-width: 1231px;
+    //   overflow: hidden;
+    //   .story-image{
+    //     width: 1231px;
+    //   }
+    // }
+    // .comment-section-container{
+    //     height: auto;
+    //     flex-grow: 1;
+    //     .story-add-comment{
+    //         margin-top: auto;
+    //     }
+    // }
+  }
+}
+.modal-close-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1001; /* Ensure it is above the modal content */
+}
+
+body.modal-open {
+  overflow: hidden;
+}

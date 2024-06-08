@@ -1,8 +1,9 @@
 import React from "react";
 import { CommentCmp } from "./Comment.jsx";
 import { useNavigate } from "react-router";
+import { Tag, Tags } from "./Tag.jsx";
 
-export function CommentSection({ storyText, storyBy, comments }) {
+export function CommentSection({ storyText, storyBy, comments, tags }) {
   const navigate = useNavigate();
   return (
     <div className="comment-section">
@@ -23,7 +24,10 @@ export function CommentSection({ storyText, storyBy, comments }) {
         >
           {storyBy.fullname}{" "}
         </span>
-        <span className="comment-text"> {storyText} </span>
+        <span className="comment-text">
+          {" "}
+          {storyText + "\n" }{<Tags tags={tags} />}{" "}
+        </span>
       </div>
       {comments.map((comment) => (
         <CommentCmp key={comment._id} comment={comment} />
