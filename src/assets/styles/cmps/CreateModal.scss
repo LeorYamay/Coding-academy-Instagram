@@ -3,17 +3,50 @@
   height: 898px;
   display: flex;
   flex-direction: column;
+  font-family: "Segoe UI", "Roboto", "Helvetica", sans-serif;
 }
-.create-title{
+.create-title {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 9px 0px;
   height: 42px;
-  width:100%;
+  width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  
+  font-weight: 600;
+}
+.media-icon {
+  height: 77px;
+  width: 96px;
+  align-self: center;
+}
+.create-media-instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 400;
+}
+.create-from-computer {
+  border-radius: 8px;
+  background-color: #0095f6;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 16px 7px;
+  height: 32px;
+  width: 169px;
+  display: flex;
+  justify-content: center; /* Centers text horizontally */
+  align-items: center; /* Centers text vertically */
+  text-align: center;
+  color: white; /* Optional: To ensure the text color contrasts with the background */
+  box-sizing: border-box; /* Optional: Ensures padding is included in the total height and width */
+
+  font-weight: 600;
 }
