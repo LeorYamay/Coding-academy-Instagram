@@ -14,10 +14,12 @@ import { Reels } from "./pages/Reels";
 import { ChatApp } from "./pages/Chat";
 import { HomePage } from "./pages/HomePage";
 import { ViewModal } from "./cmps/ViewModal";
+import { CreateModal } from "./cmps/CreateModal";
 
 export function RootCmp() {
   const location = useLocation();
   const state = location.state;
+  const isCreating = state?.isCreating;
   return (
     <div className="main-container ">
       {/* <AppHeader /> */}
@@ -40,6 +42,7 @@ export function RootCmp() {
         <Route path="/p/:storyId" element={<ViewModal />} />
         <Route path=""/>
       </Routes>
+      {isCreating&&<CreateModal/>}
     </div>
   );
 }

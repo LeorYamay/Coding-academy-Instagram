@@ -1,0 +1,19 @@
+.create-container {
+  width: 855px;
+  height: 898px;
+  display: flex;
+  flex-direction: column;
+}
+.create-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px 0px;
+  height: 42px;
+  width:100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  
+}
