@@ -1,28 +1,31 @@
+import { act } from "react";
 import { useState } from "react";
 
 export function MyDropZone({ children, onFilesDrop, type, active }) {
-  if (active) {
-    const [isDragging, setIsDragging] = useState(false);
-    const handleDragOver = (event) => {
-      event.preventDefault();
-    };
+  const [isDragging, setIsDragging] = useState(false);
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
 
-    const handleDragEnter = () => {
-      setIsDragging(true);
-    };
+  const handleDragEnter = () => {
+    setIsDragging(true);
+  };
 
-    const handleDragLeave = () => {
-      setIsDragging(false);
-    };
-    const handleDrop = (event) => {
-      event.preventDefault();
-      setIsDragging(false);
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setIsDragging(false);
 
-      const files = event.dataTransfer.files;
-      if (onFilesDrop) {
-        onFilesDrop(files);
-      }
-    };
+    const files = event.dataTransfer.files;
+    if (onFilesDrop) {
+      onFilesDrop(files);
+    }
+  };
+
+  if (!active) {
+    return <div className={`${type}`}>{children}</div>;
   }
   return (
     <div

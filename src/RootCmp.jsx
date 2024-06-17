@@ -1,5 +1,6 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router";
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 import routes from "./routes";
 
@@ -18,8 +19,10 @@ import { CreateModal } from "./cmps/CreateModal";
 
 export function RootCmp() {
   const location = useLocation();
+
   const state = location.state;
-  const isCreating = state?.isCreating;
+ const isCreating = useSelector((storeState) => storeState.systemModule.isCreating);
+
   return (
     <div className="main-container ">
       {/* <AppHeader /> */}
@@ -38,11 +41,13 @@ export function RootCmp() {
         <Route path="/direct/:folderId/:chatid" element={<ChatApp />} />
         <Route path="/p/:storyId" element={<StoryView />} />
       </Routes>
-      <Routes location={state===null?{...location,pathname:""}:location}>
+      <Routes
+        location={state === null ? { ...location, pathname: "" } : location}
+      >
         <Route path="/p/:storyId" element={<ViewModal />} />
-        <Route path=""/>
+        <Route path="" element={<></>} />
       </Routes>
-      {isCreating&&<CreateModal/>}
+      {isCreating && <CreateModal />}
     </div>
   );
 }

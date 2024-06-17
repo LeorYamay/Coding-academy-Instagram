@@ -17,6 +17,7 @@ import {
   ReelsSVG,
   SearchSVG,
 } from "./Svglist";
+import { StartCreating } from "../store/system.actions.js";
 //note when screen grows less wide icons shrink,
 // when screen is even smaller navbar moves from the side to the bottom
 
@@ -40,6 +41,7 @@ export function NavBar() {
     <nav className="nav-bar">
       <NavLink className="nav-item nav-instagram" key="Instagram" to="">
         {/* TODO: move svgs to seperate file, setup array and map */}
+        diet
         <svg
           aria-label="Instagram"
           className="nav-instagram-icon"
@@ -106,11 +108,13 @@ export function NavBar() {
         <span className="nav-text">Notifications</span>
       </div>
 
-      <div className="nav-item" key={"create"} onClick={() => {
-          navigate(location.pathname, {
-            state: { isCreating: true },
-          });
-        }}>
+      <div
+        className="nav-item"
+        key={"create"}
+        onClick={() => {
+          StartCreating();
+        }}
+      >
         <CreateSVG label={"New post"} type={"nav-create-icon"} />
 
         <span className="nav-text">Create</span>

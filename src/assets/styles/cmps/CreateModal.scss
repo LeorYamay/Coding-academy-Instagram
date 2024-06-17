@@ -1,10 +1,23 @@
 .create-container {
-  width: 855px;
-  height: 898px;
+  width: 40vw;
+  height: 70vh;
+  min-width: 750px;
   display: flex;
   flex-direction: column;
   font-family: "Segoe UI", "Roboto", "Helvetica", sans-serif;
 }
+
+.create-details {
+  // width: 70vw;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", "Roboto", "Helvetica", sans-serif;
+  height: 70vh;
+  .create-title {
+    justify-content: space-between;
+  }
+}
+
 .create-title {
   display: flex;
   justify-content: center;
@@ -18,11 +31,13 @@
   text-align: center;
   font-weight: 600;
 }
+
 .media-icon {
   height: 77px;
   width: 96px;
   align-self: center;
 }
+
 .create-media-instructions {
   display: flex;
   flex-direction: column;
@@ -33,6 +48,7 @@
   line-height: 25px;
   font-weight: 400;
 }
+
 .create-from-computer {
   border-radius: 8px;
   background-color: #0095f6;
@@ -47,6 +63,141 @@
   text-align: center;
   color: white; /* Optional: To ensure the text color contrasts with the background */
   box-sizing: border-box; /* Optional: Ensures padding is included in the total height and width */
-
   font-weight: 600;
+}
+
+.media-preview-container {
+  position: relative;
+  background-color: black; /* Black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* Constrains width */
+  max-height: 100%; /* Constrains height */
+  overflow: hidden; /* Prevents overflow */
+}
+
+.media-preview {
+  max-width: 40vw;
+  max-height: 66.5vh;
+  overflow: hidden;
+  // object-fit: cover; /* Ensures the media fits within the container */
+}
+
+.create-story-container {
+  display: flex;
+  height: 100%;
+  max-height: 100%;
+}
+
+.story-input-text {
+  // width: 322px;
+  max-width: 322px;
+  height: 100%;
+  .user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 290px;
+    height: 60px;
+    padding: 0px 16px;
+    .square-container {
+      width: 40px;
+    }
+    .username {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 600;
+    }
+  }
+  .caption-section {
+    width: 100%;
+    height: 168px;
+    resize: vertical;
+  }
+  .caption {
+    width: 290px;
+    border: none;
+    outline: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    line-height: 24px;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    resize: none;
+    box-sizing: border-box;
+    height: 100%; /* Ensure textarea fills its container */
+  }
+}
+.character-count {
+  font-size: 12px;
+  line-height: 16px;
+  color: #c7c7c7;
+}
+.text-control-section {
+  display: flex;
+  justify-items: center;
+  align-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+}
+.emoji {
+  height: 20px;
+  width: 20px;
+}
+.emoji-button {
+  height: 36px;
+  width: 36px;
+  padding: 8px;
+}
+.character-count {
+  padding: 0px 12px;
+  width: 84px;
+  text-align: center;
+  justify-self: center;
+}
+.Share-button {
+  color: #0095f6;
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 16px;
+}
+.back-button {
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  color: black;
+}
+
+.discard-buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+.discard-button {
+  background-color: transparent;
+  color: black;
+  font-size: 14px;
+  line-height: 21px;
+}
+.discard-main-button {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  color: #ed4956;
+}
+.discard-question {
+  font-size: 20px;
+  line-height: 25px;
+}
+.discard-statement {
+  color: #737373;
+  font-size: 14px;
+  line-height: 18px;
+}
+.discard-main{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  width: 400px;
+  text-align: center;
 }

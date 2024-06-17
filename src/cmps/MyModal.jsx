@@ -2,11 +2,15 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { XSVG } from "./Svglist.jsx";
 
-export function MyModal({children}) {
+export function MyModal({ children, closeAction }) {
   const navigate = useNavigate();
 
   function closeModal() {
-    navigate(-1);
+    if (closeAction) {
+      closeAction();
+    } else {
+      navigate(-1);
+    }
   }
 
   useEffect(() => {

@@ -26,12 +26,14 @@ export function CommentSection({ storyText, storyBy, comments, tags }) {
         </span>
         <span className="comment-text">
           {" "}
-          {storyText + "\n" }{<Tags tags={tags} />}{" "}
+          {storyText + "\n"}
+          {<Tags tags={tags} />}{" "}
         </span>
       </div>
-      {comments.map((comment) => (
-        <CommentCmp key={comment._id} comment={comment} />
-      ))}
+      {comments &&
+        comments.map((comment) => (
+          <CommentCmp key={comment._id} comment={comment} />
+        ))}
     </div>
   );
 }

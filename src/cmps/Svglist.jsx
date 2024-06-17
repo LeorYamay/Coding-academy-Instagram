@@ -429,3 +429,40 @@ export function MediaIconSvg({ label, type }) {
     </svg>
   );
 }
+
+export function LeftArrowSVG({ label, type }) {
+  return (
+    <svg
+      aria-label={label}
+      class={type}
+      fill="currentColor"
+      height="24"
+      role="img"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <title>{label}</title>
+      <line
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        x1="2.909"
+        x2="22.001"
+        y1="12.004"
+        y2="12.004"
+        class=""
+      ></line>
+      <polyline
+        fill="none"
+        points="9.276 4.726 2.001 12.004 9.276 19.274"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        class=""
+      ></polyline>
+    </svg>
+  );
+}
